@@ -20,7 +20,7 @@ var kineticGlobal = {
 		stage = new Kinetic.Stage({
 	        container: 'title-header',
 	        width: winWidth,
-	        height: winHeight
+	        height: winHeight,
 	    });
 	    
 	    //define the image sources
