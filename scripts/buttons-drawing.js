@@ -113,7 +113,7 @@ newCircle = function(x, y, winWidth, winHeight, color){
 			listening: true,
 			strokeWidth: 1,
 			fill: color,
-			opacity: 0.3,
+			opacity: 0.35,
 			shadowColor: 'black',
 			shadowBlur: 10,
 			shadowOffset: [7, 7],
@@ -132,7 +132,7 @@ newRect = function(x, y, winWidth, winHeight, color){
 			listening: true,
 			strokeWidth: 2,
 			fill: color,
-			opacity: 0.5,
+			opacity: 0.2,
 			rotationDeg: constants.rect.rotation,
 			shadowColor: 'black',
 			shadowBlur: 5,
@@ -185,7 +185,7 @@ addRectListeners = function(rect){
 			}).play();
 		} else {
 			project_moused_over = false;
-			outline.setOpacity("0.3");
+			outline.setOpacity("0.25");
 			outline.setStroke('#444');
 			
 			//refresh the rectangle layer
@@ -237,7 +237,7 @@ addRectListeners = function(rect){
 	rect.on('mouseout', function(){
 		if(project_moused_over){
 			project_moused_over = false;
-			outline.setOpacity("0.5");
+			outline.setOpacity("0.65");
 			image.setStroke('#444');
 
 			//refresh the drawing
@@ -268,7 +268,7 @@ addButtonListeners = function(button){
 	});
 	button.on('mouseover', function(){
 		if(button.getStroke() != '#ffc'){
-			button.setOpacity("0.55");
+			button.setOpacity("0.25");
 			button.setStroke('#dde');
 			button.remove();
 			buttonLayer.add(button);
@@ -284,7 +284,7 @@ addButtonListeners = function(button){
 	});
 	button.on('mouseout', function(){
 		if(button.getStroke() != '#444'){
-			button.setOpacity("0.45");
+			button.setOpacity("0.35");
 			button.setStroke('#444');
 			button.remove();
 			buttonLayer.add(button);
