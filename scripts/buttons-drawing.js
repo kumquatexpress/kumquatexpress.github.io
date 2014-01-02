@@ -74,17 +74,32 @@ var kineticGlobal = {
 
 var kineticText = {
 	draw: function(winWidth, winHeight){
-		textLayer.removeChildren()
+		textLayer.removeChildren();
+		var width_x = winWidth * constants.name.startx;
+		var height_y = winHeight * constants.name.starty;
+
 		var nameTag = new Kinetic.Text({
-			x: winWidth * 0.41,
-			y: winHeight * 0.08,
+			x: width_x,
+			y: height_y,
 			text: constants.name.text,
 			fontSize: Math.max(20, constants.name.font.size*winWidth/1440),
 			fontFamily: constants.name.font.family,
 			fill: constants.name.style,
+			textAlign: "center",
+			align: 'center',
+		});
+		var tagline = new Kinetic.Text({
+			x: width_x * constants.tagline.startx,
+			y: height_y * constants.tagline.starty,
+			text: constants.tagline.text,
+			fontSize: Math.max(13, constants.tagline.font.size*winWidth/1440),
+			fontFamily: constants.name.font.family,
+			fill: constants.tagline.style,
+			textAlign: "center",
 			align: 'center',
 		});
 		textLayer.add(nameTag);
+		textLayer.add(tagline);
 		textLayer.draw();
 	},
 };
@@ -300,10 +315,10 @@ var kineticButtons = {
 
 		//Constants for button positions
 		var binterval = 0.11;
-		var bstartY = 0.25;
+		var bstartY = 0.30;
 		var bstartX = 0.38;
 		//Constants for rectangle positions
-		var rstartY = 0.40;
+		var rstartY = 0.45;
 		var rstartX = 0.45;
 		var rintervalY = 0.06;
 		var rintervalX = -0.04;

@@ -6,6 +6,18 @@ var constants = {
 			family: "Raleway",
 		},
 		style: "rgb(0,0,0)",
+		startx: 0.41,
+		starty: 0.08,
+	},
+	tagline: {
+		text: "I run on the backend.",
+		font: {
+			size: 26,
+			family: "Raleway",
+		},
+		style: "rgb(0,0,0)",
+		startx: 1,
+		starty: 2,
 	},
 	urls: {
 		github: "http://www.github.com/kumquatexpress",
