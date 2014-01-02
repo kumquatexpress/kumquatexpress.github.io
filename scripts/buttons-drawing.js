@@ -237,7 +237,7 @@ addRectListeners = function(rect){
 	rect.on('mouseout', function(){
 		if(project_moused_over){
 			project_moused_over = false;
-			outline.setOpacity("0.65");
+			outline.setOpacity("0.2");
 			image.setStroke('#444');
 
 			//refresh the drawing
