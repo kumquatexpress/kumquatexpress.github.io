@@ -3,9 +3,9 @@ var buttonLayer, textLayer, rectLayer, imageLayer;
 
 var gitButton, linkButton, fbButton;
 
-var codifyRect, mealmapperRect, maasRect;
-var codifyImg, mealmapperImg, maasImg;
-var codifyGroup, mealmapperGroup, maasGroup;
+var codifyRect, mealmapperRect, maasRect, bayesRect, visualizerRect;
+
+var codifyImg, mealmapperImg, maasImg, visualizerImg, bayesImg;
 
 var buttons;
 var gitImg, linkImg, fbImg;
@@ -30,18 +30,17 @@ var kineticGlobal = {
 	    codifyImg = new Image();
 	    mealmapperImg = new Image();
 	    maasImg = new Image();
-
-	    //create the rectangle groups
-	    codifyGroup = new Kinetic.Group();
-	    mealmapperGroup = new Kinetic.Group();
-	    maasGroup = new Kinetic.Group();
+	    visualizerImg = new Image();
+	    bayesImg = new Image();
 	    
 	    gitImg.src = ("images/octocat.png");
-	    linkImg.src = ("images/linkedinlogo.png")
-	    fbImg.src = ("images/facebooklogo.png")	  
-	    codifyImg.src = (constants.link_to_screenshot("codify.herokuapp.com"))
-	    mealmapperImg.src = (constants.link_to_screenshot("mealmapper.net"))
-		maasImg.src = (constants.link_to_screenshot("code.launchpad.net/maas"))
+	    linkImg.src = ("images/linkedinlogo.png");
+	    fbImg.src = ("images/facebooklogo.png");
+	    codifyImg.src = (constants.link_to_screenshot("codify.herokuapp.com"));
+	    mealmapperImg.src = (constants.link_to_screenshot("mealmapper.net"));
+		maasImg.src = (constants.link_to_screenshot("code.launchpad.net/maas"));
+		visualizerImg.src = (constants.link_to_screenshot("boyangniu.com/visualizer"));
+		bayesImg.src = (constants.link_to_screenshot("boyangniu.com/hearmeroar"));
 	    
 	    //add all the layers to the stage
 	    buttonLayer = new Kinetic.Layer();
@@ -57,9 +56,11 @@ var kineticGlobal = {
 		addButtonListeners(gitButton);
 		addButtonListeners(linkButton);
 		addButtonListeners(fbButton);
-		addRectListeners(codifyGroup);
-		addRectListeners(mealmapperGroup);
-		addRectListeners(maasGroup);
+		addRectListeners(codifyRect);
+		addRectListeners(mealmapperRect);
+		addRectListeners(maasRect);
+		addRectListeners(visualizerRect);
+		addRectListeners(bayesRect);
 	},
 	doAnimation: function(){
 
@@ -82,7 +83,7 @@ var kineticText = {
 			x: width_x,
 			y: height_y,
 			text: constants.name.text,
-			fontSize: Math.max(20, constants.name.font.size*winWidth/1440),
+			fontSize: Math.max(27, constants.name.font.size*winWidth/1440),
 			fontFamily: constants.name.font.family,
 			fill: constants.name.style,
 			textAlign: "center",
@@ -92,7 +93,7 @@ var kineticText = {
 			x: width_x * constants.tagline.startx,
 			y: height_y * constants.tagline.starty,
 			text: constants.tagline.text,
-			fontSize: Math.max(13, constants.tagline.font.size*winWidth/1440),
+			fontSize: Math.max(15, constants.tagline.font.size*winWidth/1440),
 			fontFamily: constants.name.font.family,
 			fill: constants.tagline.style,
 			textAlign: "center",
@@ -104,16 +105,17 @@ var kineticText = {
 	},
 };
 
-newCircle = function(x, y, winWidth, winHeight, color){
+newCircle = function(x, y, winWidth, winHeight, image){
 	return new Kinetic.Circle({
 			x: x,
 			y: y,
-			radius: Math.sqrt(Math.pow(Math.sqrt(winWidth), 2) + Math.pow(Math.sqrt(winHeight), 2))/1.8,
+			radius: Math.sqrt(Math.pow(Math.sqrt(winWidth), 2) + Math.pow(Math.sqrt(winHeight), 2))/1.6,
 			stroke: '#444',
 			listening: true,
-			strokeWidth: 1,
-			fill: color,
-			opacity: 0.35,
+			strokeWidth: 2,
+			fill: "#FEECEE",
+			fillPatternImage: image,
+			opacity: 0.15,
 			shadowColor: 'black',
 			shadowBlur: 10,
 			shadowOffset: [7, 7],
@@ -122,7 +124,7 @@ newCircle = function(x, y, winWidth, winHeight, color){
 		});
 };
 
-newRect = function(x, y, winWidth, winHeight, color){
+newRect = function(x, y, winWidth, winHeight, image){
 	return new Kinetic.Rect({
 			x: x,
 			y: y,
@@ -131,8 +133,8 @@ newRect = function(x, y, winWidth, winHeight, color){
 			stroke: '#444',
 			listening: true,
 			strokeWidth: 2,
-			fill: color,
-			opacity: 0.2,
+			fillPatternImage: image,
+			opacity: 0.90,
 			rotationDeg: constants.rect.rotation,
 			shadowColor: 'black',
 			shadowBlur: 5,
@@ -159,54 +161,10 @@ var project_moused_over = false;
 
 
 addRectListeners = function(rect){
-	var outline = rect.get('Rect')[0]; 
-	var image = rect.get('Image')[0];
-	//mobile only here
-	rect.on('tap', function(){
-		if(!project_moused_over){
-			project_moused_over = true;
-
-			outline.setOpacity("0");
-			image.setStrokeWidth(3);
-			image.setStroke(randomColor());
-
-			//refresh the rectangle layer
-			rect.remove();
-			rectLayer.add(rect);
-			rectLayer.draw();
-			expandedProject = new Kinetic.Tween({
-				node: rect,
-				x: rect.getX()/2,
-				duration: 0.3,
-				scaleX: 1.25 * 1.5,
-				scaleY: 1.5,
-				rotationDeg: 0,
-				easing: Kinetic.Easings.Linear,
-			}).play();
-		} else {
-			project_moused_over = false;
-			outline.setOpacity("0.25");
-			outline.setStroke('#444');
-			
-			//refresh the rectangle layer
-			rect.remove();
-			rectLayer.add(rect);
-			rectLayer.draw();
-			if(expandedProject){
-				expandedProject.reverse();
-				/*expandedProject = new Kinetic.Tween({
-					node: rect,
-					duration: 0.3,
-					rotationDeg: 10,
-					scaleX: 1,
-					scaleY: 1,
-					easing: Kinetic.Easings.Linear
-				}).play();*/
-			}
-		}
-	});
-
 	//rest of the listeners 
+	var winWidth = $(window).innerWidth();
+	var winHeight = $(window).innerHeight();
+	var text;
 	rect.on('mouseover', function(){
 		if(!project_moused_over){
 			if(expandedProject){
@@ -214,36 +172,41 @@ addRectListeners = function(rect){
 				catch(e){ }
 			}
 			project_moused_over = true;
-			outline.setOpacity("0");
-			image.setStrokeWidth(3);
-			image.setStroke(randomColor());
 
-			//refresh the drawing
-			rect.remove();
-			rectLayer.add(rect);
-			rectLayer.draw();
+			rect.setStroke("#E6B85C");
+
 			expandedProject = new Kinetic.Tween({
 				node: rect,
-				x: -window.innerWidth/1.5,
-				y: -window.innerHeight/4,
-				duration: 0.3,
-				scaleX: 1.5*1.25,
-				scaleY: 2,
-				rotationDeg: -10.5,
+				height: rect.getHeight() * 1.75,
+				//width: rect.getWidth(),
+				duration: 0.2,
 				easing: Kinetic.Easings.Linear,
+				strokeWidth: 6,
+				opacity: 0.15,
 			}).play();
+
+			text = new Kinetic.Text({
+				x: rect.getX()+winWidth/35,
+				y: rect.getY()+winHeight/25,
+				fontSize: Math.max(13, constants.image_text.font.size*winWidth/1440),
+				text: constants.image_text[rect.getAttr("name")].text,
+				fontFamily: constants.image_text.font.family,
+				fill: "#FFFFFF"
+			});
+
+			textLayer.add(text);
+			textLayer.draw();
+
 		} else { expandedProject.reverse(); }
 	});
 	rect.on('mouseout', function(){
 		if(project_moused_over){
 			project_moused_over = false;
-			outline.setOpacity("0.2");
-			image.setStroke('#444');
+			text.destroy();
+			textLayer.draw();
+			rect.setStrokeWidth(2);
+			rect.setStroke('#444');
 
-			//refresh the drawing
-			rect.remove();
-			rectLayer.add(rect);
-			rectLayer.draw();
 			if(expandedProject){
 				expandedProject.reverse();
 				/*expandedProject = new Kinetic.Tween({
@@ -258,7 +221,7 @@ addRectListeners = function(rect){
 		}
 	});
 	rect.on('mousedown', function(){
-		window.open(outline.getAttr("linkTo"));
+		window.open(rect.getAttr("linkTo"));
 	})
 }
 
@@ -268,23 +231,23 @@ addButtonListeners = function(button){
 	});
 	button.on('mouseover', function(){
 		if(button.getStroke() != '#ffc'){
-			button.setOpacity("0.25");
+			button.setOpacity("0.1");
 			button.setStroke('#dde');
 			button.remove();
 			buttonLayer.add(button);
 			buttonLayer.draw();
 			bubble = new Kinetic.Tween({
 				node: button,
-				duration: 0.01,
-				scaleX: 1.4,
-				scaleY: 1.4,
-				easing: Kinetic.Easings.EaseIn
+				duration: 0.15,
+				scaleX: 1.5,
+				scaleY: 1.5,
+				easing: Kinetic.Easings.Linear
 			}).play();
 		} else { bubble.reverse(); }
 	});
 	button.on('mouseout', function(){
 		if(button.getStroke() != '#444'){
-			button.setOpacity("0.35");
+			button.setOpacity("0.15");
 			button.setStroke('#444');
 			button.remove();
 			buttonLayer.add(button);
@@ -318,49 +281,38 @@ var kineticButtons = {
 		var bstartY = 0.30;
 		var bstartX = 0.38;
 		//Constants for rectangle positions
-		var rstartY = 0.45;
-		var rstartX = 0.45;
-		var rintervalY = 0.06;
-		var rintervalX = -0.04;
+		var rstartY = 0.40;
+		var rstartX = 0.67;
+		var rintervalY = 0.35;
+		var rintervalX = -0.31;
 		var rcolor = '#dddddd';
 
 		//Create rectangle holders for website projects
-		codifyRect = newRect(winWidth*rstartX, winHeight*rstartY, winWidth, winHeight,
-			rcolor).setAttr("linkTo", constants.urls.codify);
-		mealmapperRect = newRect(winWidth*(rstartX+rintervalX), winHeight*(rstartY+rintervalY),
-			winWidth, winHeight, rcolor).setAttr("linkTo", constants.urls.mealmapper);
-		maasRect = newRect(winWidth*(rstartX+2*rintervalX), winHeight*(rstartY+2*rintervalY),
-			winWidth, winHeight, rcolor).setAttr("linkTo", constants.urls.maas);
+		visualizerRect = newRect(winWidth*(rstartX+0.5*rintervalX), winHeight*rstartY,
+			winWidth, winHeight, visualizerImg).setAttr("linkTo", constants.urls.visualizer)
+			.setAttr("name", "visualizer");		
+		codifyRect = newRect(winWidth*(rstartX+1.5*rintervalX), winHeight*rstartY, winWidth, winHeight,
+			codifyImg).setAttr("linkTo", constants.urls.codify)
+			.setAttr("name", "codify");
 
-		//Create website images
-		codifyImage = newImage(codifyRect.getX(), codifyRect.getY(),
-			codifyRect.getWidth(), codifyRect.getHeight(), codifyImg, constants.rect.rotation);
-		mealmapperImage = newImage(mealmapperRect.getX(), mealmapperRect.getY(),
-			mealmapperRect.getWidth(), mealmapperRect.getHeight(), mealmapperImg, constants.rect.rotation);
-		maasImage = newImage(maasRect.getX(), maasRect.getY(),
-			maasRect.getWidth(), maasRect.getHeight(), maasImg, constants.rect.rotation);
+		mealmapperRect = newRect(winWidth*(rstartX+1*rintervalX), winHeight*(rstartY+rintervalY),
+			winWidth, winHeight, mealmapperImg).setAttr("linkTo", constants.urls.mealmapper)
+			.setAttr("name", "mealmapper");
+		maasRect = newRect(winWidth*(rstartX+2*rintervalX), winHeight*(rstartY+rintervalY),
+			winWidth, winHeight, maasImg).setAttr("linkTo", constants.urls.maas)
+			.setAttr("name", "maas");
+		bayesRect = newRect(winWidth*(rstartX+0*rintervalX), winHeight*(rstartY+rintervalY),
+			winWidth, winHeight, bayesImg).setAttr("linkTo", constants.urls.bayes)
+			.setAttr("name", "bayes");			
 
-		//Group the rect images with the rect outlines
-		codifyGroup = new Kinetic.Group();
-		mealmapperGroup = new Kinetic.Group();
-		maasGroup = new Kinetic.Group();
-
-		codifyGroup.add(codifyImage);
-		codifyGroup.add(codifyRect);
-
-		mealmapperGroup.add(mealmapperImage);
-		mealmapperGroup.add(mealmapperRect);
-		
-		maasGroup.add(maasImage);
-		maasGroup.add(maasRect);
 
 		//Create buttons
 		gitButton = newCircle(winWidth*bstartX, winHeight*bstartY, 
-			winWidth, winHeight, '#f9f7ee').setAttr("linkTo", constants.urls.github);
+			winWidth, winHeight, gitImg).setAttr("linkTo", constants.urls.github);
 		linkButton = newCircle(winWidth*(bstartX+binterval), winHeight*bstartY, 
-			winWidth, winHeight, '#318fd6').setAttr("linkTo", constants.urls.linkedin);
+			winWidth, winHeight, linkImg).setAttr("linkTo", constants.urls.linkedin);
 		fbButton = newCircle(winWidth*(bstartX+binterval*2), winHeight*bstartY, 
-			winWidth, winHeight, '#5c61ee').setAttr("linkTo", constants.urls.facebook);
+			winWidth, winHeight, fbImg).setAttr("linkTo", constants.urls.facebook);
 
 		//Create button images
 		gitImage = newImage(gitButton.getX()-gitButton.attrs.radius, gitButton.getY()-gitButton.attrs.radius,
@@ -379,10 +331,12 @@ var kineticButtons = {
 		imageLayer.add(fbImage);
 		imageLayer.moveToBottom();
 		
-		rectLayer.add(codifyGroup);
-		rectLayer.add(mealmapperGroup);
-		rectLayer.add(maasGroup);
-		//kineticGlobal.setListeners();
+		rectLayer.add(codifyRect);
+		rectLayer.add(mealmapperRect);
+		rectLayer.add(maasRect);
+		rectLayer.add(visualizerRect);
+		rectLayer.add(bayesRect);
+
 		imageLayer.draw();
 		buttonLayer.draw();
 		rectLayer.draw();
