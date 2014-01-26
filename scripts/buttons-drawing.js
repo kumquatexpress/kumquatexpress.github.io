@@ -129,7 +129,7 @@ newRect = function(x, y, winWidth, winHeight, image){
 			x: x,
 			y: y,
 			height: winHeight/3.5,
-			width: winWidth/3.5,
+			width: Math.min(winWidth/3.5, 400),
 			stroke: '#444',
 			listening: true,
 			strokeWidth: 2,
@@ -188,7 +188,8 @@ addRectListeners = function(rect){
 			text = new Kinetic.Text({
 				x: rect.getX()+winWidth/35,
 				y: rect.getY()+winHeight/25,
-				fontSize: Math.max(13, constants.image_text.font.size*winWidth/1440),
+				fontSize: Math.min(Math.max(11,
+					constants.image_text.font.size*winWidth/1440), 22),
 				text: constants.image_text[rect.getAttr("name")].text,
 				fontFamily: constants.image_text.font.family,
 				fill: "#FFFFFF"
@@ -283,7 +284,7 @@ var kineticButtons = {
 		//Constants for rectangle positions
 		var rstartY = 0.40;
 		var rstartX = 0.67;
-		var rintervalY = 0.35;
+		var rintervalY = 0.37;
 		var rintervalX = -0.31;
 		var rcolor = '#dddddd';
 
