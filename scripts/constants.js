@@ -48,7 +48,8 @@ var constants = {
 		mealmapper: "http://mealmapper.net",
 		maas: "http://www.launchpad.net/maas",
 		visualizer: "http://www.boyangniu.com/visualizer",
-		bayes: "http://www.boyangniu.com/hearmeroar"
+		bayes: "http://www.boyangniu.com/hearmeroar",
+		panda: "http://www.boyangniu.com/panda.html"
 	},
 	link_to_screenshot: function(url){
 		return "http://s.wordpress.com/mshots/v1/http%3A%2F%2F"+url+"%2F?w=480"

@@ -1,14 +1,14 @@
 var stage;
 var buttonLayer, textLayer, rectLayer, imageLayer;
 
-var gitButton, linkButton, fbButton;
+var gitButton, linkButton, fbButton, pandaButton;
 
 var codifyRect, mealmapperRect, maasRect, bayesRect, visualizerRect;
 
 var codifyImg, mealmapperImg, maasImg, visualizerImg, bayesImg;
 
 var buttons;
-var gitImg, linkImg, fbImg;
+var gitImg, linkImg, fbImg, pandaImg;
 
 var randomColor = function(){
 	return '#'+Math.floor(Math.random()*10777215+6000000).toString(16);
@@ -27,6 +27,8 @@ var kineticGlobal = {
 	    gitImg = new Image();
 	    linkImg = new Image();
 	    fbImg = new Image();
+	    pandaImg = new Image();
+
 	    codifyImg = new Image();
 	    mealmapperImg = new Image();
 	    maasImg = new Image();
@@ -36,6 +38,8 @@ var kineticGlobal = {
 	    gitImg.src = ("images/octocat.png");
 	    linkImg.src = ("images/linkedinlogo.png");
 	    fbImg.src = ("images/facebooklogo.png");
+	    pandaImg.src =("images/panda.png");
+
 	    codifyImg.src = (constants.link_to_screenshot("codify.herokuapp.com"));
 	    mealmapperImg.src = (constants.link_to_screenshot("mealmapper.net"));
 		maasImg.src = (constants.link_to_screenshot("code.launchpad.net/maas"));
@@ -56,6 +60,8 @@ var kineticGlobal = {
 		addButtonListeners(gitButton);
 		addButtonListeners(linkButton);
 		addButtonListeners(fbButton);
+		addButtonListeners(pandaButton);
+
 		addRectListeners(codifyRect);
 		addRectListeners(mealmapperRect);
 		addRectListeners(maasRect);
@@ -224,6 +230,9 @@ addRectListeners = function(rect){
 	rect.on('mousedown', function(){
 		window.open(rect.getAttr("linkTo"));
 	})
+	rect.on('tap', function(){
+		window.open(rect.getAttr("linkTo"));
+	});
 }
 
 addButtonListeners = function(button){
@@ -295,7 +304,6 @@ var kineticButtons = {
 		codifyRect = newRect(winWidth*(rstartX+1.5*rintervalX), winHeight*rstartY, winWidth, winHeight,
 			codifyImg).setAttr("linkTo", constants.urls.codify)
 			.setAttr("name", "codify");
-
 		mealmapperRect = newRect(winWidth*(rstartX+1*rintervalX), winHeight*(rstartY+rintervalY),
 			winWidth, winHeight, mealmapperImg).setAttr("linkTo", constants.urls.mealmapper)
 			.setAttr("name", "mealmapper");
@@ -314,6 +322,8 @@ var kineticButtons = {
 			winWidth, winHeight, linkImg).setAttr("linkTo", constants.urls.linkedin);
 		fbButton = newCircle(winWidth*(bstartX+binterval*2), winHeight*bstartY, 
 			winWidth, winHeight, fbImg).setAttr("linkTo", constants.urls.facebook);
+		pandaButton = newCircle(Math.max(winWidth*0.45+150,winWidth*0.60), winHeight*0.04, 
+			2*winWidth/5, 2*winHeight/5, pandaImg).setAttr("linkTo", constants.urls.panda);
 
 		//Create button images
 		gitImage = newImage(gitButton.getX()-gitButton.attrs.radius, gitButton.getY()-gitButton.attrs.radius,
@@ -322,14 +332,18 @@ var kineticButtons = {
 			linkButton.getWidth(), linkButton.getHeight(), linkImg);
 		fbImage = newImage(fbButton.getX()-fbButton.attrs.radius, fbButton.getY()-fbButton.attrs.radius,
 			fbButton.getWidth(), fbButton.getHeight(), fbImg);
+		pandaImage = newImage(pandaButton.getX()-0.8*pandaButton.attrs.radius, pandaButton.getY()-0.8*pandaButton.attrs.radius,
+			0.8*pandaButton.getWidth(), 0.8*pandaButton.getHeight(), pandaImg);
 
 		buttonLayer.add(gitButton);
 		buttonLayer.add(fbButton);
 		buttonLayer.add(linkButton);
+		buttonLayer.add(pandaButton);
 		
 		imageLayer.add(gitImage);
 		imageLayer.add(linkImage);
 		imageLayer.add(fbImage);
+		imageLayer.add(pandaImage);
 		imageLayer.moveToBottom();
 		
 		rectLayer.add(codifyRect);
