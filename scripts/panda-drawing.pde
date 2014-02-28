@@ -1,9 +1,9 @@
-int width = $(window).innerWidth();
-int height = $(window).innerHeight();
+int width = $(window).width();
+int height = $(window).height();
 
 $(window).resize(function(){
-    width = $(window).innerWidth();
-    height = $(window).innerHeight();
+    width = $(window).width();
+    height = $(window).height();
     setup();
 });
 
