@@ -21,7 +21,7 @@ var constants = {
 	},
 	image_text: {
 		font: {
-			size: 25,
+			size: 22,
 			family: "Raleway",
 		},
 		maas: {
@@ -38,6 +38,9 @@ var constants = {
 		},
 		bayes: {
 			text: "HearTheBayes: Coming Soon\n\nAnother Echo Nest API\nproject, uses a naive\nbayesian prediction system\nto act on analyzed\nnotes of songs in order\nto generate brand new songs\nbased entirely on pitches\nand rhythms."
+		},
+		clairvoyance: {
+			text: "Clairvoyance\n\nA team composition analyzer\nand synergy estimator for\nLeague of Legends. By\nanalyzing the Riot API, gives\nany number of champions\nan estimated win rate\nand compatibility rating.\nAlso able to pull live match\ndata straight from the\nservers using RTMP."
 		}
 	},
 	urls: {
@@ -49,7 +52,8 @@ var constants = {
 		maas: "http://www.launchpad.net/maas",
 		visualizer: "http://www.boyangniu.com/visualizer",
 		bayes: "http://www.boyangniu.com/hearmeroar",
-		panda: "http://www.boyangniu.com/panda.html"
+		panda: "http://www.boyangniu.com/panda.html",
+		clairvoyance: "http://useclairvoyance.com"
 	},
 	link_to_screenshot: function(url){
 		return "http://s.wordpress.com/mshots/v1/http%3A%2F%2F"+url+"%2F?w=480"

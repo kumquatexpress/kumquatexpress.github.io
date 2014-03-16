@@ -3,9 +3,9 @@ var buttonLayer, textLayer, rectLayer, imageLayer;
 
 var gitButton, linkButton, fbButton, pandaButton;
 
-var codifyRect, mealmapperRect, maasRect, bayesRect, visualizerRect;
+var codifyRect, mealmapperRect, maasRect, clairvoyanceRect, visualizerRect;
 
-var codifyImg, mealmapperImg, maasImg, visualizerImg, bayesImg;
+var codifyImg, mealmapperImg, maasImg, visualizerImg, clairvoyanceImg;
 
 var buttons;
 var gitImg, linkImg, fbImg, pandaImg;
@@ -33,7 +33,7 @@ var kineticGlobal = {
 	    mealmapperImg = new Image();
 	    maasImg = new Image();
 	    visualizerImg = new Image();
-	    bayesImg = new Image();
+	    clairvoyanceImg = new Image();
 	    
 	    gitImg.src = ("images/octocat.png");
 	    linkImg.src = ("images/linkedinlogo.png");
@@ -44,7 +44,7 @@ var kineticGlobal = {
 	    mealmapperImg.src = (constants.link_to_screenshot("mealmapper.net"));
 		maasImg.src = (constants.link_to_screenshot("code.launchpad.net/maas"));
 		visualizerImg.src = (constants.link_to_screenshot("boyangniu.com/visualizer"));
-		bayesImg.src = (constants.link_to_screenshot("boyangniu.com/hearmeroar"));
+		clairvoyanceImg.src = (constants.link_to_screenshot("useclairvoyance.com"));
 	    
 	    //add all the layers to the stage
 	    buttonLayer = new Kinetic.Layer();
@@ -66,7 +66,7 @@ var kineticGlobal = {
 		addRectListeners(mealmapperRect);
 		addRectListeners(maasRect);
 		addRectListeners(visualizerRect);
-		addRectListeners(bayesRect);
+		addRectListeners(clairvoyanceRect);
 	},
 	doAnimation: function(){
 
@@ -310,9 +310,9 @@ var kineticButtons = {
 		maasRect = newRect(winWidth*(rstartX+2*rintervalX), winHeight*(rstartY+rintervalY),
 			winWidth, winHeight, maasImg).setAttr("linkTo", constants.urls.maas)
 			.setAttr("name", "maas");
-		bayesRect = newRect(winWidth*(rstartX+0*rintervalX), winHeight*(rstartY+rintervalY),
-			winWidth, winHeight, bayesImg).setAttr("linkTo", constants.urls.bayes)
-			.setAttr("name", "bayes");			
+		clairvoyanceRect = newRect(winWidth*(rstartX+0*rintervalX), winHeight*(rstartY+rintervalY),
+			winWidth, winHeight, clairvoyanceImg).setAttr("linkTo", constants.urls.clairvoyance)
+			.setAttr("name", "clairvoyance");			
 
 
 		//Create buttons
@@ -350,7 +350,7 @@ var kineticButtons = {
 		rectLayer.add(mealmapperRect);
 		rectLayer.add(maasRect);
 		rectLayer.add(visualizerRect);
-		rectLayer.add(bayesRect);
+		rectLayer.add(clairvoyanceRect);
 
 		imageLayer.draw();
 		buttonLayer.draw();
