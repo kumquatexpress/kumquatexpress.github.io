@@ -1,9 +1,5 @@
 var constants = {
 	image_text: {
-		font: {
-			size: 22,
-			family: "Raleway",
-		},
 		maas: {
 			text: "<p><h5>MAAS - Metal As a Service</h5>An open source server management tool from Canonical. Images, reboots, and registers cloud and baremetal servers while displaying a clean and user-friendly UI. Implemented an extension for custom image use at Ooyala. Made using Python/Django, Summer 2013.</p>"
 		},
