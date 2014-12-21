@@ -18,6 +18,9 @@ var constants = {
 		},
 		clairvoyance: {
 			text: "<p><h5>Clairvoyance</h5>A team composition analyzer and synergy estimator for League of Legends. By analyzing the Riot API, gives any number of champions an estimated win rate and compatibility rating. Also able to pull live match data straight from the servers using RTMP. Built with Sinatra and Postgres, Spring 2014.</p>"
+		},
+		wordcraft: {
+			text: "<p><h5>WordCraft</h5>My first ridiculous attempt at making a game using Unity. All models, scripts, and music are original. The gameplay was meant to be a cross between Scrabble and Space Invaders, where letters drop from the sky and points are scored by spelling words. Check it out on Kongregate! Spring 2013.</p>"
 		}
 	},
 	urls: {

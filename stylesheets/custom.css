@@ -86,7 +86,7 @@ div#content {
 }
 
 /* opentip style */
-.opentip-container { max-width: 50%; }
+.opentip-container { max-width: 75%; }
 .style-standard {
 	font: 14px/21px 'Raleway', 'Raleway', sans-serif;
 	font-weight: 400;
@@ -105,10 +105,8 @@ div.spacer {
 /* projects and content */
 .project-img {
 	position: relative;
-	padding-left: 4px;
-	padding-right: 4px;
 	border-color: #434A54;
 	border-width: 1px;
-	border-style: solid;
+	border-style: ridge;
 }
 
