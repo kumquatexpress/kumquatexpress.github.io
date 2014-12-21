@@ -1,63 +1,114 @@
-div.footer {
-	background-color: rgb(148,141,141);
-	text-align: center;
-	color: rgb(255,255,255);
+/* footer styling*/
+footer {
+  
 }
 
-body.raleway {
+/* font for the body and titles */
+.raleway {
 	font: 14px/21px 'Raleway', 'Raleway', sans-serif;
-	color: rgb(150,100,100);
+	font-weight: 400;
+	color: rgb(80,50,50);
 	-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 	-webkit-text-size-adjust: 100%;
-};
-
-div {
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+	font: 22px 'Raleway', 'Raleway', sans-serif;
+	font-family: 'Raleway'!important ; 
+}
+#title-header {
 	display: block;
 	position: relative;
-	border: 1px solid #000;
-	margin: 20px auto;
-	padding: 10px;
 }
-
-div:after {
+#title-header:after {
 	content: "";
 	display: block;
 	position: absolute;
 	top: 0;
 	left: 0;
 	
-	opacity: 1;
-	background-image: url("../images/greenthing.gif");
+	opacity: 0.6;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position:cover;
 	
 	/*background-color: rgb(252,123,30);*/
 	width: 100%;
-	height: 100%;
+	height: 50%;
 	z-index: -1;
-};
-*/
+}
 
-* {
-	margin: 0;
-};
-
+/* height for body elements */
 html, body {
 	height: 100%;
-};
+}
+/* sidebar and tabs */
+.sidebar {
+	margin-top: 50%;
+	margin-bottom: 50%;
+	float:left;
+	background-color: #48CFAD;
+	border-width: 2px;
+	border-color: black;
+}
+.tabbable {
+	background-color: #434A54;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+.sidebar-tab {
 
-.wrapper {
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	margin: 0 auto -4em;
-};
+}
+li.spacer {
+	height: 4px;
+	background-color: #434A54;
+}
 
-.footer, .push {
-	height: 4em;
-};
+/* content and hero div */
+.content-section {
+	font-size: 16px;
+	text-align: center;
+	font-weight: 400;
+	color: rgb(15,25,18);
+	margin-top: 10%;
+	min-height: 70%;
+}
+#about {
+	padding-top:10%;
+}
+#projects {
+	padding-top:5%;
+}
+div#content {
+	position:relative;
+	overflow:scroll;
+	background-color: #F5F7FA;
+}
 
-.spacer {
-	height: 5px;
-};
+/* opentip style */
+.opentip-container { max-width: 50%; }
+.style-standard {
+	font: 14px/21px 'Raleway', 'Raleway', sans-serif;
+	font-weight: 400;
+	color: rgb(54,42,75);
+}
+.style-project-tip>.opentip>.ot-content {
+	font: 14px/21px 'Raleway', 'Raleway', sans-serif;
+	font-weight: 400;
+	text-align: center;
+}
+
+div.spacer {
+	height: 4px;
+}
+
+/* projects and content */
+.project-img {
+	position: relative;
+	padding-left: 4px;
+	padding-right: 4px;
+	border-color: #434A54;
+	border-width: 1px;
+	border-style: solid;
+}
+

@@ -1,64 +1,28 @@
 var constants = {
-	name: {
-		text: "Boyang Niu",
-		font: {
-			size: 44,
-			family: "Raleway",
-		},
-		style: "rgb(0,0,0)",
-		startx: 0.41,
-		starty: 0.05,
-	},
-	tagline: {
-		text: "I run on the backend.",
-		font: {
-			size: 25,
-			family: "Raleway",
-		},
-		style: "rgb(0,0,0)",
-		startx: 1,
-		starty: 2.75,
-	},
 	image_text: {
 		font: {
 			size: 22,
 			family: "Raleway",
 		},
 		maas: {
-			text: "MAAS\n\nAn open source server\nmanagement tool from\nCanonical. Images, reboots,\nand registers cloud and\nbaremetal servers while\ndisplaying a clean webUI.\nI implemented an extension\nfor custom image use\nat Ooyala, Summer 2013.\nMade using Python/Django."
+			text: "<p><h5>MAAS - Metal As a Service</h5>An open source server management tool from Canonical. Images, reboots, and registers cloud and baremetal servers while displaying a clean and user-friendly UI. Implemented an extension for custom image use at Ooyala. Made using Python/Django, Summer 2013.</p>"
 		},
 		codify: {
-			text: "Codify\n\nA hackathon project from\nPennApps Fall 2012.\nOffers a collaborative, real-time\nenvironment for designing\nand visualizing object-oriented\nsystems using node.js.\nAlso has some scaffolding\nfunctionality.",
-		},
-		mealmapper: {
-			text: "Mealmapper\n\nDatabases project from\nSpring 2013 using the\nYelp dataset to generate\ninsights based on NLP\nof user reviews.\nThe app integrates with\nGoogle maps APIs to allow\nusers to search restaurant\nratings by specific food names.\nBuilt using RoR, NLTK,\nand Javascript."
+			text: "<p><h5>Codify</h5>Hackathon project from PennApps Fall 2012. Offers a collaborative, real-time environment for designing and visualizing object-oriented systems using Node.js. Also has some scaffolding functionality for certain languages.</p>",
 		},
 		visualizer: {
-			text: "Visualizer\n\nA fun side project\nusing the Echo Nest and\nSoundCloud APIs to analyze\nsongs and visualize them\naccording to the pitch\nof each encountered note.",
+			text: "<p><h5>Visualizer</h5>A fun side project using the Echo Nest and SoundCloud APIs to analyze songs and visualize them according to the pitch and rhythm of each beat. Entirely in Javascript, Winter 2013.</p>",
 		},
-		bayes: {
-			text: "HearTheBayes: Coming Soon\n\nAnother Echo Nest API\nproject, uses a naive\nbayesian prediction system\nto act on analyzed\nnotes of songs in order\nto generate brand new songs\nbased entirely on pitches\nand rhythms."
+		venn: {
+			text: "<p><h5>Venn</h5>Social network for forming platonic relationships. Uses a combination of Facebook user data and crowdsourced answers to questions to match people. Quizlet interface and basic ML over profiles implemented from scratch. Built with MongoDB and Flask, Fall 2014.</p>"
 		},
 		clairvoyance: {
-			text: "Clairvoyance\n\nA team composition analyzer\nand synergy estimator for\nLeague of Legends. By\nanalyzing the Riot API, gives\nany number of champions\nan estimated win rate\nand compatibility rating.\nAlso able to pull live match\ndata straight from the\nservers using RTMP."
+			text: "<p><h5>Clairvoyance</h5>A team composition analyzer and synergy estimator for League of Legends. By analyzing the Riot API, gives any number of champions an estimated win rate and compatibility rating. Also able to pull live match data straight from the servers using RTMP. Built with Sinatra and Postgres, Spring 2014.</p>"
 		}
 	},
 	urls: {
 		github: "http://www.github.com/kumquatexpress",
 		linkedin: "http://www.linkedin.com/profile/view?id=159503346",
 		facebook: "http://www.facebook.com/boyang.niu",
-		codify: "http://codify.herokuapp.com",
-		mealmapper: "http://mealmapper.net",
-		maas: "http://www.launchpad.net/maas",
-		visualizer: "http://www.boyangniu.com/visualizer",
-		bayes: "http://www.boyangniu.com/hearmeroar",
-		panda: "http://www.boyangniu.com/panda.html",
-		clairvoyance: "http://useclairvoyance.com"
-	},
-	link_to_screenshot: function(url){
-		return "http://s.wordpress.com/mshots/v1/http%3A%2F%2F"+url+"%2F?w=480"
-	},
-	rect: {
-		rotation: 0,
-	},
+	}
 };
