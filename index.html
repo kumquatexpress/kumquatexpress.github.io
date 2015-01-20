@@ -1,15 +1,15 @@
 ---
 layout: base
 ---
-<div class="container raleway" id='title-header'>
+<div class="container" id='title-header'>
 	<div class="row">
 		<div class="col-sm-2 tabbable tabs-left clearfix">
 			<ul class="nav nav-tabs sidebar" role="tablist">
-			<li class="sidebar-tab" role="presentation" id="about-tab"><a href="#about" class="opentip-hover" data-text="About me">About&nbsp;&nbsp;<i class="fa fa-user fa-2x"></i></a></li>
-			<li class="spacer"></li>
-			<li class="sidebar-tab" role="presentation"><a href="#projects" class="opentip-hover" data-text="Check these out">Projects&nbsp;&nbsp;<i class="fa fa-github fa-2x"></i></a></li>
-			<li class="spacer"></li>
-			<li class="sidebar-tab" role="presentation"><a href="#blog" class="opentip-hover" data-text="Visit the blog">Blog&nbsp;&nbsp;<i class="fa fa-book fa-2x"></i></a></li>
+				<li class="sidebar-tab" role="presentation" id="about-tab"><a href="#about" class="opentip-hover" data-text="About me">About&nbsp;&nbsp;<i class="fa fa-user fa-2x"></i></a></li>
+				<li class="spacer"></li>
+				<li class="sidebar-tab" role="presentation"><a href="#projects" class="opentip-hover" data-text="Check these out">Projects&nbsp;&nbsp;<i class="fa fa-github fa-2x"></i></a></li>
+				<li class="spacer"></li>
+				<li class="sidebar-tab" role="presentation"><a href="#blog" class="opentip-hover" data-text="Visit the blog">Blog&nbsp;&nbsp;<i class="fa fa-book fa-2x"></i></a></li>
 			</ul>
 		</div>
 		<div class="col-sm-10" data-spy="scroll" data-target=".tabbable" id="content">
@@ -80,15 +80,17 @@ layout: base
 			<div class="col-sm-12 well content-section" id="blog">
 				<h4>Latest Blog Posts</h4>
 				{% for post in paginator.posts %}
-					<article class="thumbnail">
-				        <header>
-				            <h4><a href="{{site.baseurl}}{{post.url}}">{{ post.title }}</a></h4>
-				            <span class="icon-date"><i class="fa fa-clock-o"></i><time datetime="{{post.date|date:"%F"}}">{{post.date|date:"%b %d, %Y"}}</time></span>
-				            <span class="icon-author"><i class="fa fa-user"></i> {% if post.author %}{{post.author}}{% else %}{{site.author}}{% endif%}</span>
-				            <span class="icon-category"><i class="fa fa-tag"></i> {{ post.categories | category_links }}</span>
-				        </header><br/>
-						<div class="entry">{{ post.excerpt }}</div>
-					</article>
+					<a href="{{site.baseurl}}{{post.url}}">
+						<article class="thumbnail blog-preview">
+					        <header>
+					            <h4>{{ post.title }}</h4>
+					            <span class="icon-date"><i class="fa fa-clock-o"></i><time datetime="{{post.date|date:"%F"}}">{{post.date|date:"%b %d, %Y"}}</time></span>
+					            <span class="icon-author"><i class="fa fa-user"></i> {% if post.author %}{{post.author}}{% else %}{{site.author}}{% endif%}</span>
+					            <span class="icon-category"><i class="fa fa-tag"></i> {{ post.categories | category_links }}</span>
+					        </header>
+							<div class="entry">{{ post.summary }}</div>
+						</article>
+					</a>
 				{% endfor %}
 			</div>
 		</div>

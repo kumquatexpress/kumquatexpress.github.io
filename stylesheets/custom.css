@@ -41,6 +41,13 @@ footer {
 /* height for body elements */
 html, body {
 	height: 100%;
+	overflow: hidden;
+}
+.container {
+	width: 100%;
+}
+.row {
+	margin: 0 0 0 0;
 }
 /* sidebar and tabs */
 .sidebar {
@@ -50,6 +57,7 @@ html, body {
 	background-color: #48CFAD;
 	border-width: 2px;
 	border-color: black;
+	width: 100%;
 }
 .tabbable {
 	background-color: #434A54;
@@ -63,7 +71,13 @@ li.spacer {
 	height: 4px;
 	background-color: #434A54;
 }
-
+#go-home {
+	padding-top: 1em;
+	text-align: center;
+}
+#go-home:hover {
+	background-color: #AAB2BD;
+}
 /* content and hero div */
 .content-section {
 	font-size: 16px;
@@ -81,7 +95,8 @@ li.spacer {
 }
 div#content {
 	position:relative;
-	overflow:scroll;
+	overflow-y:scroll;
+	overflow-x:hidden;
 	background-color: #F5F7FA;
 }
 
@@ -111,9 +126,8 @@ div.spacer {
 }
 
 /* blog */
-#blog>article {
+article.blog-preview {
 	text-align: left;
-	padding: 1em;
 	background-color: #48CFAD;
 }
 article>header>.date {
@@ -129,4 +143,12 @@ span.icon-author {
 /* link colors */
 a {
 	color: black !important; 
+}
+
+/* blog posts */
+.entry {
+	margin: 1em;
+}
+article {
+	padding: 1em;
 }
