@@ -110,3 +110,23 @@ div.spacer {
 	border-style: ridge;
 }
 
+/* blog */
+#blog>article {
+	text-align: left;
+	padding: 1em;
+	background-color: #48CFAD;
+}
+article>header>.date {
+	text-align: left;
+}
+span.icon-category {
+	padding-left: 1em;
+}
+span.icon-author {
+	padding-left: 1em;
+}
+
+/* link colors */
+a {
+	color: black !important; 
+}

@@ -1,0 +1,10 @@
+name: A Slice of README
+description: Personal Space
+author: Boyang Niu
+author_email: boyang.niu@gmail.com
+category_dir: /
+baseurl: 
+url: http://boyangniu.com/
+markdown: rdiscount
+permalink: pretty
+paginate: 3
