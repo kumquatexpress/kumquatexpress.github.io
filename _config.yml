@@ -11,4 +11,4 @@ paginate: 3
 category_title_prefix: "Tagged - "
 category_meta_description_prefix: "Tagged - "
 exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'README.md']
-gems: ['jekyll-less']
+gems: ['jekyll-less', 'jekyll-sitemap']

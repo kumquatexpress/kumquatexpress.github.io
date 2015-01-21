@@ -13,8 +13,9 @@ $(document).ready(function() {
   };
 
   Opentip.styles.project = {
-    target: "#project-view",
-    tipJoint: "bottom",
+    target: null,
+    tipJoint: "bottom center",
+    targetJoint: null,
     group: "tags",
     fixed: true,
     hideEffect: "fade",
