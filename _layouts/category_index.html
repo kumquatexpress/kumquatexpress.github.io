@@ -1,0 +1,19 @@
+---
+layout: with_sidebar
+---
+<h3 class="category">{{ page.title }}</h3>
+<ul class="posts">
+{% for post in site.categories[page.category] %}
+	<a class="hidden-link" href="{{site.baseurl}}{{post.url}}">
+		<article class="thumbnail blog-preview">
+	        <header>
+	            <h4>{{ post.title }}</h4>
+	            <span class="icon-date"><i class="fa fa-clock-o"></i><time datetime="{{post.date|date:"%F"}}">{{post.date|date:"%b %d, %Y"}}</time></span>
+	            <span class="icon-author"><i class="fa fa-user"></i> {% if post.author %}{{post.author}}{% else %}{{site.author}}{% endif%}</span>
+	            <span class="icon-category">{{ post.categories | category_links }}</span>
+	        </header>
+			<div class="entry">{{ post.summary }}</div>
+		</article>
+	</a>
+{% endfor %}
+</ul>

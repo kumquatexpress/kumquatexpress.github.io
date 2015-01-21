@@ -8,3 +8,5 @@ url: http://boyangniu.com/
 markdown: rdiscount
 permalink: pretty
 paginate: 3
+category_title_prefix: "Tagged - "
+category_meta_description_prefix: "Tagged - "
