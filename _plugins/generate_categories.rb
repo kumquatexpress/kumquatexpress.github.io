@@ -136,7 +136,7 @@ module Jekyll
         '<a href="'+BASEURL+'/'+item+'/"><i class="fa fa-tag"></i>'+item+'</a>'
       end
       
-      connector = "and"
+      connector = " | "
       case categories.length
       when 0
         ""
