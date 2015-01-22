@@ -1,8 +1,7 @@
-// Scrolls to the selected menu item on the page ONLY INSIDE THE HERO DIV
 $(document).ready(function() {
   Opentip.styles.tab = {
     target: true, // Takes the <a /> element as target
-    tipJoint: "right", // So the tooltip floats above the link
+    tipJoint: "right",
     group: "tags", // Ensures that only one tag Opentip is visible
     fixed: true,
     background: [
@@ -41,7 +40,7 @@ $(document).ready(function() {
       target = target.length ? target : $('#' + this.hash.slice(1));
       if (target.length) {
         herodiv.animate({
-          scrollTop: (target.offset().top + herodiv.scrollTop()) * 0.9
+          scrollTop: (target.offset().top + herodiv.scrollTop())
         }, 1000);
         return false;
       }

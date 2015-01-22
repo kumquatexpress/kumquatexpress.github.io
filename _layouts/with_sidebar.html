@@ -2,21 +2,30 @@
 layout: base
 ---
 <div class="col-sm-2 tabbable tabs-left clearfix">
-	<a class="opentip-hover" data-text="Mission Central" href="/">
-		<div id="go-home">	
+	<a class="col-sm-6 col-md-6 opentip-hover top-icon" data-text="Mission Central" href="/">
+		<div>	
 			<span class="fa-stack fa-2x">
-				<i class="fa fa-circle-o fa-stack-2x"></i>
+				<i class="fa fa-circle-thin fa-stack-2x"></i>
 				<i class="fa fa-home fa-stack-1x"></i>
+			</span>
+		</div>
+	</a>
+	<a class="col-sm-6 col-md-6 opentip-hover top-icon" data-text="Archived Posts" href="/archive">
+		<div>	
+			<span class="fa-stack fa-2x">
+				<i class="fa fa-square-o fa-stack-2x"></i>
+				<i class="fa fa-book fa-stack-1x"></i>
 			</span>
 		</div>
 	</a>
 	<ul class="nav nav-tabs sidebar" role="tablist">
         {% for category in site.categories %}
 	    <li class="sidebar-tab">
-	        <a href="/{{ category | first }}">
+	        <a href="/{{ category | first }}" class="opentip-hover" data-text="View all posts in {{ category | first | capitalize }}">
             	<span class="category">{{ category | first | capitalize }}&nbsp;&nbsp;<i class="fa fa-tag"></i></span>
             </a>
 	    </li>
+	    <li class="spacer"></li>
         {% endfor %}
 	</ul>
 </div>
