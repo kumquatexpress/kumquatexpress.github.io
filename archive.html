@@ -2,14 +2,21 @@
 layout: with_sidebar
 title: Post Archive
 ---
-<section>
-    <table class="table">
-        {% for post in site.posts %}
-        <tr>
-            <td><i class="fa fa-clock-o"></i> <time datetime="{{post.date|date:"%F"}}">{{post.date|date:"%b %d, %Y"}}</time></td>
-            <td><a href="{{site.baseurl}}{{ post.url }}">{{ post.title }}</a></td>
-            <td><span class="category">{{post.categories | category_links}}</span></td>
-        </tr>
-	   {% endfor %}
-    </table>
+<h4 class="page-title">{{ page.title }}</h4>
+<section id="archive-content">
+    {% for post in site.posts %}
+    <a href="{{site.baseurl}}{{ post.url }}">
+	    <div class="thumbnail archive-row row">
+	    	<span class="archive-clock">
+	        	<i class="fa fa-clock-o"></i> <time datetime="{{post.date|date:"%F"}}">{{post.date|date:"%b %d, %Y"}}</time>
+	        </span>
+		    <span class="archive-title">{{ post.title }}</span>
+		    <div class="archive-category">{{post.categories | category_links}}</div>
+		</div>
+	</a>
+    <div class="row">
+   		<p>{{ post.summary }}</p>
+   	</div>
+   {% endfor %}
+
 </section>
