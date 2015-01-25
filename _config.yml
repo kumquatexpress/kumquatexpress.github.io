@@ -12,3 +12,5 @@ category_title_prefix: "Tagged - "
 category_meta_description_prefix: "Tagged - "
 exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'README.md']
 gems: ['jekyll-less', 'jekyll-sitemap']
+highlighter: pygments
+markdown: redcarpet
