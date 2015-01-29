@@ -64,6 +64,10 @@ $(document).ready(function() {
       style: "project"
     });
   });
+
+  $(window).resize(function(){
+    resize_height();
+  });
 });
 
 function resize_height() {
@@ -74,4 +78,3 @@ function resize_height() {
   $("#content").height(height);
   $(".tabbable").height(height);
 }
-$(window).resize(resize_height());

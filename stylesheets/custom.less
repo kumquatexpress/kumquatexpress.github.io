@@ -3,13 +3,19 @@
 @sidebarcolor: #434A54;
 @linkcolor: #4A89DC;
 
+/* font constants */
+@font-size: 100%;
+@line-width: 140%;
+@font-style: Raleway;
+@font-serif: sans-serif;
+
 /* footer styling*/
 footer {
   
 }
 /* font for the body and titles */
 .raleway {
-	font: 14px/21px 'Raleway', 'Raleway', sans-serif;
+	font: @font-size/@line-width @font-style, @font-style, @font-serif;
 	font-weight: 400;
 	color: rgb(80,50,50);
 	-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
@@ -17,8 +23,8 @@ footer {
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
 	font-weight: 700;
-	font: 22px 'Raleway', 'Raleway', sans-serif;
-	font-family: 'Raleway'!important ; 
+	font: 22px @font-style, @font-style, @font-serif;
+	font-family: @font-style!important ; 
 }
 #title-header {
 	display: block;
@@ -82,7 +88,8 @@ li.spacer {
 }
 /* content and hero div */
 .content-section {
-	font-size: 16px;
+	font-size: @font-size;
+	line-height: @line-width;
 	text-align: center;
 	font-weight: 400;
 	color: rgb(15,25,18);
@@ -104,12 +111,12 @@ div#content {
 /* opentip style */
 .opentip-container { max-width: 67%; }
 .style-standard {
-	font: 14px/21px 'Raleway', 'Raleway', sans-serif;
+	font: @font-size/@line-width @font-style, @font-style, @font-serif;
 	font-weight: 400;
 	color: rgb(54,42,75);
 }
 .style-project-tip>.opentip>.ot-content {
-	font: 14px/21px 'Raleway', 'Raleway', sans-serif;
+	font: @font-size/@line-width @font-style, @font-style, @font-serif;
 	font-weight: 400;
 	text-align: center;
 }
