@@ -64,14 +64,23 @@ $(document).ready(function() {
       style: "project"
     });
   });
+
+  $(window).resize(function(){
+    resize_height();
+  });
 });
 
 function resize_height() {
   var height = $(window).innerHeight() - $("footer").innerHeight();
+  var width = $(window).innerWidth();
   if (height < 300) {
     height = 300;
   }
   $("#content").height(height);
   $(".tabbable").height(height);
+  if (width < 768) {
+    $(".tabbable").hide();
+  } else {
+    $(".tabbable").show(500);
+  }
 }
-$(window).resize(resize_height());
