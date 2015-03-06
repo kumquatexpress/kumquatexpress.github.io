@@ -1,4 +1,9 @@
 $(document).ready(function() {
+
+  $('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+  });
+
   Opentip.styles.tab = {
     target: true, // Takes the <a /> element as target
     tipJoint: "right",
@@ -78,9 +83,5 @@ function resize_height() {
   }
   $("#content").height(height);
   $(".tabbable").height(height);
-  if (width < 768) {
-    $(".tabbable").hide();
-  } else {
-    $(".tabbable").show(500);
-  }
+
 }

@@ -2,15 +2,12 @@
 @tabcolor: #8CC152;
 @sidebarcolor: #434A54;
 @linkcolor: #4A89DC;
-<<<<<<< HEAD
-=======
 
 /* font constants */
 @font-size: 100%;
 @line-width: 140%;
 @font-style: Raleway;
 @font-serif: sans-serif;
->>>>>>> 0d11e0d98092ba2ab6246f2213d0a7c79fc795e4
 
 /* footer styling*/
 footer {
@@ -50,6 +47,9 @@ html, body {
 	border-color: black;
 	width: 100%;
 }
+.sidebar-tab {
+	width: 100%;
+}
 .tabbable {
 	background-color: @sidebarcolor;
 	margin: 0 0 0 0;
@@ -57,13 +57,19 @@ html, body {
 }
 li.spacer {
 	height: 4px;
+	width: 100%;
 	background-color: @sidebarcolor;
 }
 .top-icon {
 	padding-top: 1em;
 	padding-bottom: 1em;
 	text-align: center;
+	position: initial;
 	color: @tabcolor;
+}
+.navbar-toggle .icon-bar {
+	background-color:black;
+	margin-top: 3px !important;
 }
 /* content and hero div */
 .content-section {
@@ -163,3 +169,53 @@ article {
 .page-title {
 	text-align: center;
 }
+
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 767px) {
+
+	body {
+		overflow-x: scroll;
+	}
+	.row-offcanvas {
+	position: relative;
+	-webkit-transition: all .25s ease-out;
+	     -o-transition: all .25s ease-out;
+	        transition: all .25s ease-out;
+	}
+
+	.row-offcanvas-right {
+	right: 0;
+	}
+
+	.row-offcanvas-left {
+	left: 0;
+	}
+
+	.row-offcanvas-right
+	.sidebar-offcanvas {
+	right: -50%; /* 6 columns */
+	}
+
+	.row-offcanvas-left
+	.sidebar-offcanvas {
+	left: -50%; /* 6 columns */
+	}
+
+	.row-offcanvas-right.active {
+	right: 50%; /* 6 columns */
+	}
+
+	.row-offcanvas-left.active {
+	left: 50%; /* 4 columns */
+	}
+
+	.sidebar-offcanvas {
+	position: absolute;
+	top: 0;
+	width: 33%; /* 3 columns */
+	}
+	}

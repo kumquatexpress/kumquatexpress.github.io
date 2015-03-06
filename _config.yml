@@ -4,7 +4,7 @@ author: Boyang Niu
 author_email: boyang.niu@gmail.com
 category_dir: /
 baseurl: 
-url: http://boyangniu.com/
+url: http://boyangniu.me/
 markdown: rdiscount
 permalink: pretty
 paginate: 3

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Thoughts on Crowdfunding as a Platform
-category: misc
-Summary: My experiences with Kickstarter and Indiegogo projects.
+category: Misc
+summary: My experiences with Kickstarter and Indiegogo projects.
 ---
 
 Yesterday, I received an email update telling me that my [Sense](https://hello.is) was finally going to ship, first to its Kickstarter backers and then to preorders. Two weeks ago, my preorder of the very popular [Canary](http://canary.is) arrived. First, we'll go through an overview about what they were and why I backed them. 
