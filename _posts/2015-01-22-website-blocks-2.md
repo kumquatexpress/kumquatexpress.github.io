@@ -3,7 +3,6 @@ layout: post
 title: Website Building Blocks - Part 2
 categories:
 - Design
-- Meta
 summary: The second iteration of this website from Summer 2013.
 ---
 

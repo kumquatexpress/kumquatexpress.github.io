@@ -3,7 +3,6 @@ layout: post
 title: Website Building Blocks - Part 1
 categories:
 - Design
-- Meta
 summary: A dicussion of the different iterations my website has gone through.
 ---
 
