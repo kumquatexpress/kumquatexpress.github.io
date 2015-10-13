@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  	<meta charset="utf-8">
+	<!-- Font family -->
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.2/custom/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/opentip.css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css">
+	<link rel="stylesheet" href="/stylesheets/site.min.css">
+	<link rel="stylesheet" href="/stylesheets/pygments.css">
+	<link rel="stylesheet" href="/stylesheets/custom.css">
+
+	<!-- Javascript external libraries -->
+	<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="/scripts/opentip-jquery.min.js"></script>
+	<script src="/scripts/constants.js"></script>
+	<script src="/scripts/app.js"></script>
+
+	<!-- Favicons -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
+	<title> Hello Jekyll |  A Slice of README</title>
+</head>
+
+<body>
+	<main class="raleway">
+		<div class="container" id='title-header'>
+			<div class="row">
+				<div class="navbar-header">
+	<button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	</button>
+</div>
+<div class="container">
+	<div class="row row-offcanvas row-offcanvas-left">
+		<div class="tabbable col-xs-3 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
+			<a class="col-sm-6 col-md-6 opentip-hover" data-text="Mission Central" href="/">
+				<span class="fa-stack fa-2x top-icon">
+				<i class="fa fa-circle-thin fa-stack-2x"></i>
+				<i class="fa fa-home fa-stack-1x"></i>
+				</span>
+			</a>
+			<a class="col-sm-6 col-md-6 opentip-hover" data-text="Archived Posts" href="/archive">
+				<span class="fa-stack fa-2x top-icon">
+				<i class="fa fa-square-o fa-stack-2x"></i>
+				<i class="fa fa-book fa-stack-1x"></i>
+				</span>
+			</a>
+			<ul class="nav nav-tabs sidebar" role="tablist">
+		        
+			    <li class="sidebar-tab">
+			        <a href="/software" class="opentip-hover" data-text="View all posts in Software">
+		            	<span class="category">Software&nbsp;&nbsp;<i class="fa fa-tag"></i></span>
+		            </a>
+			    </li>
+			    <li class="spacer"></li>
+		        
+			    <li class="sidebar-tab">
+			        <a href="/design" class="opentip-hover" data-text="View all posts in Design">
+		            	<span class="category">Design&nbsp;&nbsp;<i class="fa fa-tag"></i></span>
+		            </a>
+			    </li>
+			    <li class="spacer"></li>
+		        
+			    <li class="sidebar-tab">
+			        <a href="/gadgets" class="opentip-hover" data-text="View all posts in Gadgets">
+		            	<span class="category">Gadgets&nbsp;&nbsp;<i class="fa fa-tag"></i></span>
+		            </a>
+			    </li>
+			    <li class="spacer"></li>
+		        
+			    <li class="sidebar-tab">
+			        <a href="/misc" class="opentip-hover" data-text="View all posts in Misc">
+		            	<span class="category">Misc&nbsp;&nbsp;<i class="fa fa-tag"></i></span>
+		            </a>
+			    </li>
+			    <li class="spacer"></li>
+		        
+			    <li class="sidebar-tab">
+			        <a href="/travel" class="opentip-hover" data-text="View all posts in Travel">
+		            	<span class="category">Travel&nbsp;&nbsp;<i class="fa fa-tag"></i></span>
+		            </a>
+			    </li>
+			    <li class="spacer"></li>
+		        
+			</ul>
+		</div>
+		<div class="col-sm-10" id="content">
+			<article>
+		<a class="back-archive" href="/archive"><i class="fa fa-arrow-circle-left"></i> Back to archive</a>
+        <header>
+            <h2>Hello Jekyll</h2>
+            <span class="icon-date"><i class="fa fa-clock-o"></i><time datetime="2015-01-20">Jan 20, 2015</time></span>
+            <span class="icon-author"><i class="fa fa-user"></i> Boyang Niu</span>
+            <span class="icon-category"><a href="/software/"><i class="fa fa-tag"></i>software</a></span>
+        </header>
+        <div class="entry raleway"><p>I finally started using Jeykll as a templating engine and static generator for these blog pages. The setup was extremely brief, and the <a href="http://jekyllrb.com/docs/home/">Jeykll documentation</a> contains all of the useful configuration metadata and links to plugins. For my current blog, I&#39;m using the generate-categories plugin from <a href="http://recursive-design.com/projects/jekyll-plugins/">Recursive Design</a>. The plugins are ruby modules that extend Jekyll&#39;s existing classes; they can access the same global variables as the templates and help to populate and iterate over other fields.</p>
+
+<p>Along the way, I ran into some minor troubles with naming conventions and accessing global variables, but these were cleared up quickly by reading the docs and following <a href="https://github.com/maciakl/Sample-Jekyll-Site">this very simple Jekyll skeleton</a>. The skeleton includes the basic blog category setup and some generic layouts--it also provides a useful template for a page acting as an archive. All of these pages are very sparsely designed, so it&#39;s up to you to flesh them out with the necessary scripts and CSS.</p>
+
+<p>Ultimately, the Jekyll framework is fast, easy to set up, and integrates fluidly with Github&#39;s User Pages. This makes it a great blogging choice for the beginner.</p>
+</div>
+</article>
+<div class="row">
+	
+	
+	<div class="next-post">
+		<a href=/design/2015/01/21/website-blocks/>
+			Next: Website Building Blocks - Part 1&nbsp;<i class="fa fa-chevron-right fa-lg"></i>
+		</a>
+	</div>
+	
+</div>
+		</div>
+	</div>
+</div>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<div class="container raleway">
+		    <div class="row">
+		        <div class="col-lg-10 col-lg-offset-1 text-center">
+		            <p class="text-muted">Boyang Niu 2014&copy; |
+		            <a href="documents/resume.pdf">My resume</a>  |
+		            <a href="https://github.com/kumquatexpress">My Github</a>
+		            </p>
+		        </div>
+		    </div>
+		</div>
+	</footer>
+
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-46797848-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+</body>
+
+</html>
