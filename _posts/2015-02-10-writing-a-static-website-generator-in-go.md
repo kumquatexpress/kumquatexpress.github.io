@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Writing a Static Website Generator in Golang
-category: Golang
+category: Software
 summary: How I designed the architecture and began to write Vroom
 ---
 

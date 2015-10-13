@@ -172,6 +172,10 @@ article {
 .archive-category {
   float: right;
 }
+.archive-title {
+  float: left;
+  padding-left: 10%;
+}
 .page-title {
   text-align: center;
 }

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hello Jekyll
-category: Frameworks
+category: Software
 summary: A brief overview of how I set up Jekyll as my templating engine.
 ---
 

@@ -1,7 +1,9 @@
 ---
 layout: post
 title: Thoughts on Crowdfunding as a Platform
-category: Misc
+categories:
+ - Misc
+ - Gadgets
 summary: My experiences with Kickstarter and Indiegogo projects.
 ---
 
