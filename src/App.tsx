@@ -1,303 +1,305 @@
-import { useEffect, useState } from "react";
-import { experiments, projects, writings } from "./content";
-import { Kumquat, ProjectDrawing } from "./Drawings";
+import { useEffect, useRef, useState } from "react";
+import { projects, experiments, writings } from "./content";
+import World from "./World";
 
-function Arrow({ diagonal = false }: { diagonal?: boolean }) {
+function Arrow() {
+  return <span aria-hidden="true">↗</span>;
+}
+
+function TinyArcade() {
+  const [score, setScore] = useState(0);
+  const [active, setActive] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
+  const [position, setPosition] = useState({ x: 50, y: 50 });
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => {
+    setHydrated(true);
+    return () => {
+      if (timer.current) clearTimeout(timer.current);
+    };
+  }, []);
+  function start() {
+    if (timer.current) clearTimeout(timer.current);
+    setScore(0);
+    setPosition({ x: 50, y: 50 });
+    setActive(true);
+    timer.current = setTimeout(() => setActive(false), 15000);
+  }
+  function catchCitrus() {
+    setScore((value) => value + 1);
+    setPosition({ x: 14 + Math.random() * 72, y: 18 + Math.random() * 58 });
+  }
   return (
-    <svg className="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d={diagonal ? "M6 18L18 6M6 6H18V18" : "M4 12H20M13 5L20 12L13 19"}
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <div className="tiny-arcade">
+      <div className="arcade-top">
+        <span>01 / CITRUS CATCH</span>
+        <span aria-live="polite">{String(score).padStart(2, "0")} PTS</span>
+      </div>
+      <div className={`arcade-screen ${active ? "is-playing" : ""}`}>
+        <div className="pixel-stars" aria-hidden="true">
+          ✦ <span>+</span> · <span>✧</span> +
+        </div>
+        {active ? (
+          <button
+            className="catch-citrus"
+            style={{ left: `${position.x}%`, top: `${position.y}%` }}
+            onClick={catchCitrus}
+            aria-label="Catch the citrus"
+          >
+            ●<span aria-hidden="true">✦</span>
+          </button>
+        ) : (
+          <div className="arcade-idle">
+            <span className="arcade-orange" aria-hidden="true">
+              ✳
+            </span>
+            <h3>{score ? "Nice side quest." : "One tiny distraction."}</h3>
+            <p>
+              {score
+                ? `${score} citrus caught. Not bad, human.`
+                : "15 seconds. Catch as many as you can."}
+            </p>
+            {hydrated ? (
+              <button onClick={start}>
+                {score ? "One more round?" : "Let’s play"}{" "}
+                <span aria-hidden="true">→</span>
+              </button>
+            ) : (
+              <a
+                className="arcade-fallback"
+                href="https://github.com/kumquatexpress"
+              >
+                Explore the other side quests →
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+      <div className="arcade-bottom">
+        <span>
+          {active
+            ? "Click, tap, or press Enter. Go go go."
+            : "A little game made for this corner of the internet."}
+        </span>
+        <span aria-hidden="true">● ●</span>
+      </div>
+    </div>
   );
 }
 
 export default function App() {
-  const [dark, setDark] = useState(false);
-  useEffect(() => {
-    setDark(document.documentElement.dataset.theme === "dark");
-  }, []);
-  function toggleTheme() {
-    const next = document.documentElement.dataset.theme !== "dark";
-    document.documentElement.dataset.theme = next ? "dark" : "light";
-    setDark(next);
-    try {
-      localStorage.setItem("boyang-theme", next ? "dark" : "light");
-    } catch (error) {
-      console.warn("[theme] Preference could not be saved:", error);
-    }
-  }
   return (
     <>
-      <a href="#main" className="skip-link">
+      <a className="skip-link" href="#main">
         Skip to content
       </a>
-      <div className="site-shell mx-auto max-w-[1120px] px-6 sm:px-10">
-        <header className="site-header flex items-center justify-between">
-          <a href="#" className="wordmark" aria-label="Boyang Niu, home">
-            bn<span className="accent">.</span>
+      <div className="site-shell mx-auto max-w-[1520px] px-5 sm:px-9 lg:px-14">
+        <header className="site-header flex items-center justify-between gap-5">
+          <a className="wordmark" href="#world" aria-label="Boyang Niu, home">
+            <span className="brand-star" aria-hidden="true">
+              ✳
+            </span>
+            <span>kumquatexpress</span>
           </a>
           <nav
             aria-label="Main navigation"
             className="flex items-center gap-5 sm:gap-8"
           >
             <a href="#work">Work</a>
+            <a href="#play">Play</a>
             <a href="#about">About</a>
-            <a href="#connect">
-              Say hello <span aria-hidden="true">↗</span>
+            <a className="nav-hello" href="#connect">
+              Say hello <Arrow />
             </a>
-            <button
-              className="theme-button"
-              onClick={toggleTheme}
-              aria-label="Toggle light and dark appearance"
-              aria-pressed={dark}
-              title="A change of scenery"
-            >
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="6.5"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                />
-                <path d="M12 5.5A6.5 6.5 0 0112 18.5Z" fill="currentColor" />
-              </svg>
-              <span className="sr-only" aria-live="polite">
-                {dark ? "Dark appearance" : ""}
-              </span>
-            </button>
           </nav>
         </header>
         <main id="main">
-          <section
-            className="hero grid md:grid-cols-[1.2fr_1fr] items-center"
-            aria-labelledby="hero-title"
-          >
-            <div className="hero-copy">
-              <p className="eyebrow flex items-center gap-2.5">
-                <span className="status-dot" /> ENGINEER & BUILDER · SAN
-                FRANCISCO
-              </p>
-              <h1 id="hero-title">
-                Boyang Niu<span className="accent">.</span>
-              </h1>
-              <p className="hero-lede">
-                A little curiosity.
-                <br />A lot of <em>making.</em>
-              </p>
-              <p className="hero-description">
-                I build things at{" "}
-                <a href="https://openai.com/" className="inline-link">
-                  OpenAI
-                </a>
-                .<br />
-                Tools to create, things to play with,
-                <br className="hidden sm:block" /> and whatever comes next.
-              </p>
-              <a
-                className="text-link hero-cta inline-flex items-center gap-3"
-                href="#work"
-              >
-                A few things I’ve worked on <Arrow />
-              </a>
-            </div>
-            <Kumquat />
-          </section>
-          <div className="hero-foot flex flex-wrap items-center justify-between gap-3">
-            <span className="mono">ON THE INTERNET, @KUMQUATEXPRESS</span>
-            <span className="small-note">
-              Equal parts considered & curious.
-            </span>
-          </div>
-          <section
-            id="work"
-            className="section work-section"
-            aria-labelledby="work-title"
-          >
-            <div className="section-heading grid sm:grid-cols-[1fr_2fr] gap-5">
-              <p className="eyebrow">01 / SELECTED WORK</p>
+          <section id="world" className="hero" aria-labelledby="hero-title">
+            <div className="hero-heading flex flex-wrap justify-between items-end gap-5">
               <div>
-                <h2 id="work-title">
-                  From an idea
+                <p className="eyebrow">ENGINEER @ OPENAI · SAN FRANCISCO</p>
+                <h1 id="hero-title">
+                  Boyang Niu
+                  <span className="name-spark" aria-hidden="true">
+                    ✳
+                  </span>
+                </h1>
+              </div>
+              <div className="hero-aside">
+                <p>
+                  Building things.
                   <br />
-                  to <em>out in the world.</em>
-                </h2>
-                <p className="section-intro">
-                  Some of the products I’ve contributed to at OpenAI.
+                  Getting pleasantly sidetracked.
                 </p>
+                <span className="handwritten">come have a look ↙</span>
               </div>
             </div>
-            <div className="project-list">
-              {projects.map((project) => (
+            <World />
+            <div className="hero-footer flex flex-wrap justify-between gap-3">
+              <span>SOFTWARE / WORLDS / HAPPY ACCIDENTS</span>
+              <a href="#work">
+                A few things I’ve helped make <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+          </section>
+          <section
+            id="work"
+            className="work-section section"
+            aria-labelledby="work-title"
+          >
+            <div className="section-heading flex flex-wrap justify-between items-end gap-5">
+              <div>
+                <p className="eyebrow">01 / OUT IN THE WORLD</p>
+                <h2 id="work-title">
+                  Ideas, <em>made real.</em>
+                </h2>
+              </div>
+              <p className="section-note">
+                Selected contributions at OpenAI.
+                <br />A few different ways to make things.
+              </p>
+            </div>
+            <div className="work-mosaic grid md:grid-cols-2 gap-5 sm:gap-7">
+              {projects.map((project, index) => (
                 <a
+                  className={`art-project project-${project.drawing} ${index === 0 ? "md:col-span-2" : ""}`}
                   href={project.href}
                   key={project.number}
-                  className="project-row group grid items-center"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <span className="mono project-number">{project.number}</span>
-                  <ProjectDrawing kind={project.drawing} />
-                  <div className="project-copy">
-                    <p className="eyebrow">{project.category}</p>
-                    <h3>{project.name}</h3>
-                    <p>{project.description}</p>
+                  <div className="art-project-image">
+                    <img
+                      src={`./art/${index === 0 ? "cinema" : index === 1 ? "still-life" : "toys"}.webp`}
+                      alt={
+                        index === 0
+                          ? "An imagined astronaut looking across turquoise water at a giant coral moon."
+                          : index === 1
+                            ? "A sculptural still life in cobalt, orange, and lilac."
+                            : "An original cast of playful clay characters."
+                      }
+                      width={index === 0 ? 1672 : 1254}
+                      height={index === 0 ? 941 : 1254}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span className="project-type">{project.category}</span>
+                    <span className="art-index">0{index + 1}</span>
+                    {index === 0 && (
+                      <span className="cinema-label">
+                        <span aria-hidden="true">✦</span> WORLD BUILDING, FRAME
+                        BY FRAME
+                      </span>
+                    )}
                   </div>
-                  <span className="project-arrow">
-                    <Arrow diagonal />
+                  <div className="project-caption">
+                    <div>
+                      <h3>{project.name}</h3>
+                      <p>{project.description}</p>
+                    </div>
+                    <span className="project-open" aria-hidden="true">
+                      ↗
+                    </span>
+                  </div>
+                  <span className="sr-only">
+                    Official launch story (opens in a new tab).
                   </span>
-                  <span className="sr-only"> (opens in a new tab)</span>
                 </a>
               ))}
+            </div>
+            <p className="art-credit">
+              Original site artwork, inspired by the themes of the work. Explore
+              each project through its official launch story.
+            </p>
+          </section>
+          <section
+            id="play"
+            className="play-section section"
+            aria-labelledby="play-title"
+          >
+            <div className="section-heading flex flex-wrap justify-between items-end gap-5">
+              <div>
+                <p className="eyebrow">02 / A HEALTHY AMOUNT OF DISTRACTION</p>
+                <h2 id="play-title">
+                  Take a <em>side quest.</em>
+                </h2>
+              </div>
+              <span className="sidequest-sticker" aria-hidden="true">
+                FOR THE
+                <br />
+                FUN OF IT ✳
+              </span>
+            </div>
+            <div className="play-grid grid lg:grid-cols-[1.15fr_1fr] gap-6 sm:gap-9">
+              <TinyArcade />
+              <div className="experiment-list">
+                {experiments.map((item, index) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={`experiment experiment-${index}`}
+                  >
+                    <span className="experiment-icon" aria-hidden="true">
+                      {index === 0 ? "Aa↟" : index === 1 ? "W" : "⌘"}
+                    </span>
+                    <div>
+                      <p className="eyebrow">{item.tag}</p>
+                      <h3>{item.name}</h3>
+                      <p>{item.description}</p>
+                    </div>
+                    <Arrow />
+                  </a>
+                ))}
+              </div>
             </div>
           </section>
           <section
             id="about"
-            className="section about-section grid sm:grid-cols-[1fr_2fr] gap-7"
+            className="about-section section grid md:grid-cols-[0.8fr_1.2fr] gap-10 sm:gap-16"
             aria-labelledby="about-title"
           >
-            <div>
-              <p className="eyebrow">02 / A LITTLE CONTEXT</p>
-              <svg
-                className="asterisk"
-                viewBox="0 0 100 100"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M49 5L52 94M8 28L89 72M10 76L88 23"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
+            <div className="about-art">
+              <img
+                src="./art/toys.webp"
+                alt="Three friendly sculptural characters: lavender robot, orange citrus, and mint star."
+                width="1254"
+                height="1254"
+                loading="lazy"
+              />
+              <span className="about-sticker">
+                THERE’S A HUMAN
+                <br />
+                BEHIND ALL THIS ↗
+              </span>
             </div>
-            <div>
+            <div className="about-copy">
+              <p className="eyebrow">03 / THE PERSON AT THE KEYBOARD</p>
               <h2 id="about-title">
-                A winding path.
-                <br />
-                <em>A common thread.</em>
+                Hi, I’m <em>Boyang.</em>
               </h2>
-              <div className="about-copy">
-                <p>
-                  I’m an engineer in San Francisco, working at the intersection
-                  of useful tools and creative possibility.
-                </p>
-                <p>
-                  Before OpenAI, I built Stylized, a generative AI product
-                  photography tool, as a founder at South Park Commons. Before
-                  that: engineering at Square, Baton, Dropbox, and Hive.
-                </p>
-                <p>
-                  There’s a thread through it all: software that gives people a
-                  little more room to make things.
-                </p>
-              </div>
+              <p>
+                I build software at OpenAI in San Francisco. I’ve worked on
+                Sora, image generation, custom GPTs, and whatever else needs
+                doing.
+              </p>
+              <p>
+                Before that: a founder at South Park Commons building Stylized,
+                and engineering at Square, Baton, Dropbox, and Hive.
+              </p>
               <a
+                className="text-link"
                 href="https://www.linkedin.com/in/boyang-niu"
-                className="text-link inline-flex items-center gap-3"
               >
-                The longer version <Arrow diagonal />
+                The longer story <Arrow />
               </a>
-            </div>
-          </section>
-          <section
-            className="section experiments-section"
-            aria-labelledby="experiments-title"
-          >
-            <div className="section-heading flex flex-wrap justify-between items-end gap-5">
-              <div>
-                <p className="eyebrow">03 / SIDE QUESTS</p>
-                <h2 id="experiments-title">
-                  Made out of <em>curiosity.</em>
-                </h2>
+              <div className="writing-links">
+                <span className="eyebrow">A COUPLE OF OLD MUSINGS / 2020</span>
+                {writings.map((item) => (
+                  <a href={item.href} key={item.name}>
+                    {item.name} <Arrow />
+                  </a>
+                ))}
               </div>
-              <a
-                href="https://github.com/kumquatexpress"
-                className="text-link inline-flex items-center gap-2"
-              >
-                More on GitHub <Arrow diagonal />
-              </a>
-            </div>
-            <div className="experiment-grid grid md:grid-cols-3 gap-8 md:gap-10">
-              {experiments.map((item, index) => (
-                <a className="experiment" href={item.href} key={item.name}>
-                  <div className="experiment-symbol" aria-hidden="true">
-                    {index === 0 ? (
-                      <span className="stream-symbol">
-                        Aa
-                        <span className="stream-cursor" />
-                      </span>
-                    ) : index === 1 ? (
-                      <span className="tile-symbol">
-                        <span>W</span>
-                        <span>O</span>
-                        <span>R</span>
-                        <span>D</span>
-                      </span>
-                    ) : (
-                      <svg viewBox="0 0 120 60" fill="none">
-                        <path
-                          d="M20 43L42 14L63 42L98 17M20 43L63 42L98 17L42 14"
-                          stroke="currentColor"
-                          strokeWidth="1"
-                        />
-                        {[
-                          [20, 43],
-                          [42, 14],
-                          [63, 42],
-                          [98, 17],
-                        ].map(([x, y]) => (
-                          <circle
-                            key={x}
-                            cx={x}
-                            cy={y}
-                            r="4"
-                            fill="var(--paper)"
-                            stroke="currentColor"
-                          />
-                        ))}
-                      </svg>
-                    )}
-                  </div>
-                  <p className="eyebrow">{item.tag}</p>
-                  <h3 className="flex justify-between items-center gap-2">
-                    {item.name}
-                    <Arrow diagonal />
-                  </h3>
-                  <p className="experiment-description">{item.description}</p>
-                </a>
-              ))}
-            </div>
-          </section>
-          <section
-            className="section writing-section grid sm:grid-cols-[1fr_2fr] gap-7"
-            aria-labelledby="writing-title"
-          >
-            <div>
-              <p className="eyebrow">04 / OCCASIONAL WORDS</p>
-              <h2 id="writing-title">
-                Other
-                <br />
-                <em>musings.</em>
-              </h2>
-            </div>
-            <div>
-              {writings.map((item) => (
-                <a className="writing-row" href={item.href} key={item.name}>
-                  <div className="flex justify-between gap-4 items-center">
-                    <h3>{item.name}</h3>
-                    <Arrow diagonal />
-                  </div>
-                  <p>{item.topic}</p>
-                  <span className="mono">{item.date}</span>
-                </a>
-              ))}
             </div>
           </section>
           <section
@@ -305,32 +307,32 @@ export default function App() {
             className="connect-section"
             aria-labelledby="connect-title"
           >
-            <p className="eyebrow">GOOD THINGS START WITH A CONVERSATION</p>
+            <p className="eyebrow">THAT’S MY LITTLE CORNER. WHAT’S YOURS?</p>
             <div className="flex flex-wrap justify-between items-end gap-8">
               <h2 id="connect-title">
-                Say <em>hello.</em>
-                <span className="accent">↗</span>
+                Let’s make
+                <br />
+                <em>something.</em>
+                <span aria-hidden="true">✳</span>
               </h2>
-              <div className="social-links flex flex-wrap gap-6">
+              <div className="social-links flex flex-col gap-3">
                 <a href="https://x.com/kumquatexpress">
-                  X / Twitter <Arrow diagonal />
+                  X / Twitter <Arrow />
                 </a>
                 <a href="https://github.com/kumquatexpress">
-                  GitHub <Arrow diagonal />
+                  GitHub <Arrow />
                 </a>
                 <a href="https://www.linkedin.com/in/boyang-niu">
-                  LinkedIn <Arrow diagonal />
+                  LinkedIn <Arrow />
                 </a>
               </div>
             </div>
           </section>
         </main>
-        <footer className="site-footer flex flex-wrap justify-between items-center gap-4">
+        <footer className="site-footer flex flex-wrap justify-between items-center gap-3">
           <span>© {new Date().getFullYear()} Boyang Niu</span>
-          <span className="footer-note">
-            A small corner of a very big internet.
-          </span>
-          <a href="#">Back to top ↑</a>
+          <span>Built with curiosity. And a few oranges.</span>
+          <a href="#world">Back to the world ↑</a>
         </footer>
       </div>
     </>

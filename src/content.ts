@@ -12,8 +12,7 @@ export const projects: Project[] = [
     number: "01",
     name: "Sora",
     category: "VIDEO & AUDIO",
-    description:
-      "From the first launch to Sora 2. Generative video, sound, and a new way to put yourself in the story.",
+    description: "Sora 1 & 2. Video, sound, and a new way into the story.",
     href: "https://openai.com/index/sora-2/",
     drawing: "sora",
   },
@@ -21,8 +20,7 @@ export const projects: Project[] = [
     number: "02",
     name: "Image generation",
     category: "CREATIVE TOOLS",
-    description:
-      "Making and editing images in ChatGPT. A shorter distance from “what if” to something you can see.",
+    description: "Making and editing images in ChatGPT.",
     href: "https://openai.com/index/introducing-4o-image-generation/",
     drawing: "image",
   },
@@ -31,7 +29,7 @@ export const projects: Project[] = [
     name: "Custom GPTs",
     category: "PLATFORM",
     description:
-      "Little versions of ChatGPT for the things people care about. Tools that people can make their own.",
+      "Little versions of ChatGPT, made for your corner of the world.",
     href: "https://openai.com/index/introducing-gpts/",
     drawing: "gpts",
   },

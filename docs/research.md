@@ -27,12 +27,22 @@ Work links go to official OpenAI launch pages; their descriptions summarize the 
 
 This is an original composition. No reference site's code or artwork was copied. Original botanical and project SVGs tie the site to Boyang's public handle and creative-tool work.
 
-## Provisional choices awaiting user judgment
+## Version 1 direction — rejected by user
 
-Warm paper, charcoal, olive and ochre; Instrument Serif paired with DM Sans; a botanical kumquat as the hero object; editorial rather than résumé-first hierarchy; a short, deliberately casual introduction. These are design hypotheses, not learned user preferences.
+Warm paper, charcoal, olive and ochre; serif typography; a botanical kumquat as hero; editorial hierarchy. The user rejected this draft as too textual, too professional/clean, and lacking color and the aesthetics of 3D, gaming, video, and art. The explicit correction is scoped to this site: prioritize character and visual discovery. Do not interpret minimalist/elegant as an editorial résumé layout here.
 
 ## Implementation decisions
 
-Vite + React + Tailwind's Vite plugin. Native anchor links; complete build-time rendered HTML; hydration from the same component tree. Self-hosted Latin fonts, no third-party runtime scripts, CSS-only entrance/hover animation, user-triggered Web Animations for the branch, reduced-motion support. No artificial wait or full-screen loader. Theme preference is local to the visitor's browser.
+Vite + React + Tailwind's Vite plugin. Native anchor links; complete build-time rendered HTML; hydration from the same component tree. Self-hosted Latin fonts, no third-party runtime scripts, an art-first poster with an on-demand Three.js companion, a small arcade game, and reduced-motion support. No artificial wait or full-screen loader. DOM navigation and content remain available without JavaScript or WebGL.
 
 Primary technical references: [Tailwind Vite setup](https://tailwindcss.com/docs/installation/using-vite), [Vite GitHub Pages deployment](https://vite.dev/guide/static-deploy.html#github-pages).
+
+## Version 2 response to explicit feedback
+
+The new visual proposal uses a violet backdrop, cinematic landscape, sculptural artwork, peach/lime accents, a miniature 3D island, and a playable citrus-catching arcade. Copy and biography are shorter. This exact art direction awaits user judgment; the accepted learning is the explicit rejection of the earlier text/professional-clean emphasis.
+
+Swarm collaboration continued with two independent critiques. Primary references shifted toward [Bruno Simon](https://bruno-simon.com/) (discovery and play as the portfolio experience) and [Jesse Zhou](https://www.jesse-zhou.com/) / [his case study](https://jesse-zhou.medium.com/jesses-ramen-case-study-77bae77ab5f0) (coherent environments and meaningful props). The new composition, models, and artwork are original.
+
+The official [Sora 2 launch page](https://openai.com/index/sora-2/) explicitly credits Boyang in Product. The page is an archived launch story, not a promise of present product availability. Artwork tiles lead to official stories and identify site artwork as conceptual illustrations.
+
+Technical critique informed the poster-first approach, explicit scene activation, failure/context-loss restoration, DOM controls, reduced-motion event handling, pixel-ratio cap, limited ambient rendering, offscreen/hidden suspension, cleanup, and expanded browser checks. No device-level FPS claim is made. See [art provenance and production prompts](artwork.md).
