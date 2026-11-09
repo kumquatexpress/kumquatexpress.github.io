@@ -12,9 +12,18 @@ export default function World() {
   const [paused, setPaused] = useState(false);
   const [launches, setLaunches] = useState(0);
   const enterButton = useRef<HTMLButtonElement>(null);
+  const firstControl = useRef<HTMLButtonElement>(null);
+  const transferFocus = useRef(false);
   useEffect(() => {
     setHydrated(true);
   }, []);
+  useEffect(() => {
+    if (state !== "playing") return;
+    if (transferFocus.current && document.activeElement === document.body) {
+      firstControl.current?.focus({ preventScroll: true });
+    }
+    transferFocus.current = false;
+  }, [state]);
   useEffect(() => {
     if (!requested) return;
     setState("loading");
@@ -102,7 +111,11 @@ export default function World() {
               <button
                 ref={enterButton}
                 className="enter-button"
-                onClick={() => setRequested(true)}
+                onClick={() => {
+                  transferFocus.current =
+                    document.activeElement === enterButton.current;
+                  setRequested(true);
+                }}
               >
                 Enter 3D <span aria-hidden="true">↗</span>
               </button>
@@ -120,6 +133,7 @@ export default function World() {
             {state === "playing" && (
               <>
                 <button
+                  ref={firstControl}
                   onClick={() => island.current?.rotate(-1)}
                   aria-label="Rotate island left"
                 >

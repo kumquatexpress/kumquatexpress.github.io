@@ -524,7 +524,7 @@ export async function createIsland(
     },
     dispose() {
       disposed = true;
-      host.dataset.motion = 'still';
+      host.dataset.motion = "still";
       if (request) cancelAnimationFrame(request);
       resizeObserver.disconnect();
       intersection.disconnect();

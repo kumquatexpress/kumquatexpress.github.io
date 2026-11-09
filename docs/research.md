@@ -23,9 +23,9 @@ Work links go to official OpenAI launch pages; their descriptions summarize the 
 - [Anthony Fu](https://antfu.me/): personal signature and playful details alongside real work.
 - [Brittany Chiang](https://brittanychiang.com/): clear professional context and concrete project descriptions. Avoid reproducing her recognizable portfolio composition.
 - [Josh W. Comeau](https://www.joshwcomeau.com/blog/how-i-built-my-blog/): purposeful custom interactions with keyboard alternatives. The linked essay is explicitly his historical 2021 stack, not current architecture guidance.
-- [Bruno Simon](https://bruno-simon.com/): portfolio as playful experience. The present site borrows the principle of exploration, without the scope of a 3D world.
+- [Bruno Simon](https://bruno-simon.com/): portfolio as playful experience. The first draft borrowed little of its visual experience; the revision makes room for an interactive miniature world.
 
-This is an original composition. No reference site's code or artwork was copied. Original botanical and project SVGs tie the site to Boyang's public handle and creative-tool work.
+No reference site’s code or artwork was copied. Version 1 used original botanical and project SVGs; version 2 replaces them with original generated artwork and an original interactive Three.js scene.
 
 ## Version 1 direction — rejected by user
 
@@ -46,3 +46,5 @@ Swarm collaboration continued with two independent critiques. Primary references
 The official [Sora 2 launch page](https://openai.com/index/sora-2/) explicitly credits Boyang in Product. The page is an archived launch story, not a promise of present product availability. Artwork tiles lead to official stories and identify site artwork as conceptual illustrations.
 
 Technical critique informed the poster-first approach, explicit scene activation, failure/context-loss restoration, DOM controls, reduced-motion event handling, pixel-ratio cap, limited ambient rendering, offscreen/hidden suspension, cleanup, and expanded browser checks. No device-level FPS claim is made. See [art provenance and production prompts](artwork.md).
+
+Swarm source review caught a focus handoff defect in version 2: the initial tests explicitly focused newly mounted scene/game controls, masking loss of focus when replacing their entry buttons. The correction conditionally transfers focus on entry and game completion, preserves focus when visitors move elsewhere, and tests the ordinary Enter/Tab path.

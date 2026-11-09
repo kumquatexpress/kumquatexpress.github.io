@@ -12,18 +12,33 @@ function TinyArcade() {
   const [hydrated, setHydrated] = useState(false);
   const [position, setPosition] = useState({ x: 50, y: 50 });
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const entryButton = useRef<HTMLButtonElement>(null);
+  const fruitButton = useRef<HTMLButtonElement>(null);
+  const transferFocus = useRef(false);
   useEffect(() => {
     setHydrated(true);
     return () => {
       if (timer.current) clearTimeout(timer.current);
     };
   }, []);
+  useEffect(() => {
+    if (transferFocus.current && document.activeElement === document.body) {
+      (active ? fruitButton : entryButton).current?.focus({
+        preventScroll: true,
+      });
+    }
+    transferFocus.current = false;
+  }, [active]);
   function start() {
+    transferFocus.current = document.activeElement === entryButton.current;
     if (timer.current) clearTimeout(timer.current);
     setScore(0);
     setPosition({ x: 50, y: 50 });
     setActive(true);
-    timer.current = setTimeout(() => setActive(false), 15000);
+    timer.current = setTimeout(() => {
+      transferFocus.current = document.activeElement === fruitButton.current;
+      setActive(false);
+    }, 15000);
   }
   function catchCitrus() {
     setScore((value) => value + 1);
@@ -41,6 +56,7 @@ function TinyArcade() {
         </div>
         {active ? (
           <button
+            ref={fruitButton}
             className="catch-citrus"
             style={{ left: `${position.x}%`, top: `${position.y}%` }}
             onClick={catchCitrus}
@@ -60,7 +76,7 @@ function TinyArcade() {
                 : "15 seconds. Catch as many as you can."}
             </p>
             {hydrated ? (
-              <button onClick={start}>
+              <button ref={entryButton} onClick={start}>
                 {score ? "One more round?" : "Let’s play"}{" "}
                 <span aria-hidden="true">→</span>
               </button>

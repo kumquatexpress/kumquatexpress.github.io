@@ -113,7 +113,8 @@ test("initial reduced motion renders a still world with keyboard controls", asyn
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await page.getByRole("button", { name: "Enter 3D" }).click();
+  await page.getByRole("button", { name: "Enter 3D" }).focus();
+  await page.keyboard.press("Enter");
   await expect(page.locator(".world-stage")).toHaveClass(/scene-playing/, {
     timeout: 30000,
   });
@@ -121,7 +122,14 @@ test("initial reduced motion renders a still world with keyboard controls", asyn
     "data-motion",
     "still",
   );
-  await page.getByRole("button", { name: "Launch citrus" }).focus();
+  await expect(
+    page.getByRole("button", { name: "Rotate island left" }),
+  ).toBeFocused();
+  await page.keyboard.press("Tab");
+  await page.keyboard.press("Tab");
+  await expect(
+    page.getByRole("button", { name: "Launch citrus" }),
+  ).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page.getByText("A tiny leap for citrus-kind.")).toBeVisible();
   await page.getByRole("button", { name: "Return to the artwork" }).click();
@@ -197,9 +205,10 @@ test("the mini arcade works with a keyboard and ends its round", async ({
 }) => {
   await page.clock.install();
   await page.goto("/");
-  await page.getByRole("button", { name: "Let’s play" }).click();
+  await page.getByRole("button", { name: "Let’s play" }).focus();
+  await page.keyboard.press("Enter");
   const fruit = page.getByRole("button", { name: "Catch the citrus" });
-  await fruit.focus();
+  await expect(fruit).toBeFocused();
   await page.keyboard.press("Enter");
   await page.keyboard.press("Enter");
   await expect(page.getByText("02 PTS")).toBeVisible();
@@ -210,4 +219,32 @@ test("the mini arcade works with a keyboard and ends its round", async ({
   await expect(
     page.getByText("2 citrus caught. Not bad, human."),
   ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "One more round?" }),
+  ).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(fruit).toBeFocused();
+  await page.keyboard.press("Tab");
+  const nextExperiment = page.locator(".experiment").first();
+  await expect(nextExperiment).toBeFocused();
+  await page.clock.fastForward(15000);
+  await expect(nextExperiment).toBeFocused();
+});
+
+test("scene readiness preserves focus when the visitor moves elsewhere", async ({
+  page,
+}) => {
+  await page.route("**/assets/world-scene-*.js", async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    await route.continue();
+  });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Enter 3D" }).focus();
+  await page.keyboard.press("Enter");
+  const workLink = page.getByRole("link", { name: "Work", exact: true });
+  await workLink.focus();
+  await expect(page.locator(".world-stage")).toHaveClass(/scene-playing/, {
+    timeout: 30000,
+  });
+  await expect(workLink).toBeFocused();
 });
