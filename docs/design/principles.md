@@ -13,6 +13,7 @@ Scope: Boyang's personal website. These principles reflect his judgments of vers
 - Freeze a specific baseline commit and capture desktop/phone at fixed viewport and state.
 - Record a single change hypothesis, allowed scope, and acceptance rule before editing.
 - Implement one candidate on a branch. Keep unrelated assets, features, and styling fixed. Deleting text can still affect rendered composition; record that rather than claiming every other variable is fixed.
+- Each available machine should run the pinned production candidate in its own browser before discussion. Record exact source, environment, viewport, actions, and its own captures; disclose failed access and emulation limits. Preserve the initial opinion before reading other critiques. Source-only inspection is not a visual runtime review.
 - Collect independent role-based critiques before discussion. For paired review, use neutral A/B names and shuffled order, the same exact user feedback, equal capture settings, full-page and first-viewport views.
 - Ask each judge for A/B/unclear, concrete improvement, regression/unresolved issue, and whether neither sufficiently addresses the overall feedback. Keep raw findings and dissent. No weighted score or claim that model votes establish user preference.
 - Select a candidate for user review only if at least two judges prefer it for the predeclared target, can identify visible evidence, and no functional/factual regression remains. An unclear outcome retains the baseline.

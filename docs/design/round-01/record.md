@@ -55,10 +55,14 @@ All three again said the full image/layout complaint remains. The predefined sel
 
 ## Validation and capture limits
 
-TypeScript and production build pass. Candidate at 360/768/1440 passes overflow and Axe checks. The earlier full run passed all eight functional/noJS/scene tests plus the phone layout check; two screenshot checks exposed an offscreen live-region child rectangle, fixed by placing the existing live text directly on one `sr-only` span. Rechecked all three widths. The final pull-request run will execute the complete suite. Game/scene logic, artwork, palette, and dimensions remain unchanged. Functional checks are evidence of behavior, not aesthetic success.
+TypeScript and production build pass. Candidate at 360/768/1440 passes overflow and Axe checks. The earlier full run passed all eight functional/noJS/scene tests plus the phone layout check; two screenshot checks exposed an offscreen live-region child rectangle, fixed by placing the existing live text directly on one `sr-only` span. Rechecked all three widths. The complete pull-request suite subsequently passed all eleven checks on df8113e (run 42711825020); deployment was skipped. Game/scene logic, artwork, palette, and dimensions remain unchanged. Functional checks are evidence of behavior, not aesthetic success.
 
 Deleting text shortened the page and moved following content upward; preserving markup classes/CSS does not preserve absolute rendered positions. Restoring the short intro then makes the phone hero about a short paragraph taller than pass A. Screenshots are published as identically compressed WebP copies; original PNGs were used for judging. First-viewport captures are equal-size; full pages retain their actual differing lengths.
 
 ## Next decision
 
 Await Boyang's comparison before promotion. The live root remains the baseline. If this quieter treatment is accepted, the next experiment should address image hierarchy or structural composition as its own bounded hypothesis. The repeated robot in About and the generic sequence of image panels are candidate targets, not accepted remedies.
+
+## Subsequent independent machine runtime review
+
+At Boyang’s request, each machine ran the pinned candidate itself. Two peers preserved their first runtime verdict before consulting stored critiques; the author performed a separate corroborating headless-browser audit after native UI access failed. The independent captures and actual input observations are linked in [the runtime review](runtime-review.md). No application or deployment change was made. This evidence supplies additional hypotheses, not user acceptance.

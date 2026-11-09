@@ -30,3 +30,7 @@ The reviewers still found **too many competing images and a conventional section
 - [First deletion pass, desktop](deletions-desktop-top.webp) · [phone](deletions-phone-top.webp)
 - [Raw critique summary, hypotheses and validation](record.md)
 - [Principles and iteration loop](../principles.md)
+
+## Actual browser inspections
+
+The candidate was subsequently run on all three machines, with independently captured peer opinions and interaction evidence. [Read the runtime review and machine reports](runtime-review.md). No additional application change was made.
