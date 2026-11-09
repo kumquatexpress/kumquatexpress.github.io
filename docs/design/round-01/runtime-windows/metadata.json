@@ -1,0 +1,141 @@
+{
+  "candidateCommit": "df8113e2822bcd5595801b389f54c3cc78e674ec",
+  "auditBranch": "audit/visual-df8113e-windows",
+  "runUrl": "http://127.0.0.1:4187/",
+  "platform": "Windows",
+  "browser": {
+    "name": "Chromium",
+    "version": "158.0.8127.18",
+    "automation": "Playwright 1.65.0",
+    "headless": true
+  },
+  "toolchain": {
+    "node": "24.22.2",
+    "npm": "11.19.1"
+  },
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 1000,
+      "deviceScaleFactor": 1
+    },
+    "phone": {
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 1,
+      "isMobile": true,
+      "hasTouch": true,
+      "physicalDevice": false
+    }
+  },
+  "build": {
+    "dependencyInstall": "npm ci",
+    "productionBuild": "npm run build",
+    "result": "passed"
+  },
+  "inspection": {
+    "fullPageScroll": true,
+    "desktop3D": [
+      "Enter 3D",
+      "Rotate left",
+      "Rotate right",
+      "Launch citrus",
+      "Pause",
+      "Return to artwork"
+    ],
+    "desktopInput": [
+      "pointer",
+      "Tab",
+      "Enter",
+      "Space"
+    ],
+    "phone3D": [
+      "tap Enter 3D",
+      "tap Rotate right",
+      "tap Launch citrus",
+      "tap Pause",
+      "tap Return to artwork"
+    ],
+    "arcade": {
+      "desktopPoints": 4,
+      "phonePoints": 1,
+      "desktopEndScreenObserved": true
+    },
+    "skipLinkVerified": true,
+    "noJsPhonePosterObserved": true,
+    "pageErrors": [],
+    "baselineCompared": false,
+    "otherReviewsReadBeforeInitialVerdict": false
+  },
+  "sourceFilesChanged": false,
+  "deploymentPerformed": false,
+  "previewServerStopped": true,
+  "artifacts": [
+    {
+      "file": "desktop-initial.jpg",
+      "source": "desktop-initial.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 1434747,
+      "bytes": 340814,
+      "sourceSha256": "413d5896c5905bf1ab6a24fa95e042e7997e1721d76bd2ff88f9d739cb185cff",
+      "sha256": "0bce0747a5b670683ea6fa4cbf8cc45fce25f17fd1e74dc76ecb7aefde087b04",
+      "transformation": "JPEG quality 88, 4:4:4, no resize or crop"
+    },
+    {
+      "file": "phone-initial.jpg",
+      "source": "phone-initial.png",
+      "width": 390,
+      "height": 844,
+      "sourceBytes": 297378,
+      "bytes": 89036,
+      "sourceSha256": "fe9b0dfdfb39c62ec2fa5a235281f8ec3353875ab4adfa22b4c581b41e7ce8c5",
+      "sha256": "dc21fabc037fa4e59f0a4ec22408972ad6826f982a2787a3644b6534151be7da",
+      "transformation": "JPEG quality 88, 4:4:4, no resize or crop"
+    },
+    {
+      "file": "desktop-full.jpg",
+      "source": "desktop-full.png",
+      "width": 1440,
+      "height": 4583,
+      "sourceBytes": 4301984,
+      "bytes": 1049449,
+      "sourceSha256": "b55d1eb74302fe26d9e581ae935ae6115dada13150aaedd7825dce5d8afe9c02",
+      "sha256": "0a1aa0ef5fd474b0ebd3842a134517d5e9220db73ea13410b5dd09d91024422c",
+      "transformation": "JPEG quality 88, 4:4:4, no resize or crop"
+    },
+    {
+      "file": "desktop-3d.jpg",
+      "source": "desktop-3d.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 546989,
+      "bytes": 103138,
+      "sourceSha256": "25f35434bc886faceadcb22447cefd7c0b86e04f1a2f6cf98282946891d96ab9",
+      "sha256": "5f9d80d7185b5aed3a48adfa1a76c4b7baa2d69aaacff4f4aebd3618b9631e7f",
+      "transformation": "JPEG quality 88, 4:4:4, no resize or crop"
+    },
+    {
+      "file": "desktop-arcade-playing.jpg",
+      "source": "desktop-arcade-playing.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 743800,
+      "bytes": 178047,
+      "sourceSha256": "6b86b7ced4d712056774d41dcc2f2f78b4be79f6545458ba6a28252e92157a7d",
+      "sha256": "5c9d1a24a346b5fe78a1040730d0c3ffc45ef2c673b006fe62a0c047fe0dbcbf",
+      "transformation": "JPEG quality 88, 4:4:4, no resize or crop"
+    },
+    {
+      "file": "desktop-arcade-finished.jpg",
+      "source": "desktop-arcade-finished.png",
+      "width": 1440,
+      "height": 1000,
+      "sourceBytes": 561923,
+      "bytes": 170178,
+      "sourceSha256": "e9498e52ca5fef8e9798eb3d8f288c9706bf5953b544cd968cc5d0f134e04d79",
+      "sha256": "91db1dce368263bf799d5887a40cb1723bdf015f901f7882d035916c55a97f48",
+      "transformation": "JPEG quality 88, 4:4:4, no resize or crop"
+    }
+  ]
+}
