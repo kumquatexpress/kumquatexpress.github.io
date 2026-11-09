@@ -1,0 +1,84 @@
+{
+  "candidateCommit": "df8113e2822bcd5595801b389f54c3cc78e674ec",
+  "originalCaptureDirectory": "/private/tmp/boyang-quiet-run/output/playwright",
+  "compression": {
+    "format": "webp",
+    "quality": 90,
+    "effort": 6,
+    "resized": false
+  },
+  "artifacts": [
+    {
+      "file": "desktop-top.webp",
+      "originalFile": "output/playwright/desktop-top.png",
+      "width": 1440,
+      "height": 1000,
+      "originalWidth": 1440,
+      "originalHeight": 1000,
+      "originalBytes": 1433190,
+      "compressedBytes": 222158,
+      "originalSha256": "9d59fcfd9ec7d300508f9de4da20886c0d3e8a4fe1ccbb526a3abd57ffba9961",
+      "compressedSha256": "f684c528cb1708642d76244a96c9c5aa607d88832cdf870e8d53ad9918b06a31"
+    },
+    {
+      "file": "desktop-full.webp",
+      "originalFile": "output/playwright/desktop-full.png",
+      "width": 1440,
+      "height": 4583,
+      "originalWidth": 1440,
+      "originalHeight": 4583,
+      "originalBytes": 4310741,
+      "compressedBytes": 647912,
+      "originalSha256": "bfeb1c173411f0bcfe8e83f49e9873fc661e2b215573e3de5d777c0eb50daf21",
+      "compressedSha256": "d24ce2e7c474069e1f26bd4858bc967fff55264da317b5ca44c8d7dc161d72cf"
+    },
+    {
+      "file": "phone-390x844-top.webp",
+      "originalFile": "output/playwright/phone-390x844-top.png",
+      "width": 390,
+      "height": 844,
+      "originalWidth": 390,
+      "originalHeight": 844,
+      "originalBytes": 298171,
+      "compressedBytes": 56776,
+      "originalSha256": "0753adda85d26f172e920dcb49a1ba19d7b9512c34a34e1e7e2f4a83cd00b01b",
+      "compressedSha256": "a509d89a5f00b438881ca8a2ab9900b47ed0141ce8a39b8edf77721983ad0537"
+    },
+    {
+      "file": "phone-390x844-full.webp",
+      "originalFile": "output/playwright/phone-390x844-full.png",
+      "width": 390,
+      "height": 4587,
+      "originalWidth": 390,
+      "originalHeight": 4587,
+      "originalBytes": 1067805,
+      "compressedBytes": 206628,
+      "originalSha256": "a493051c7eec2eb5e3e8f8b820e470d067794437dd3b5700aea9b3b1f9d4fa5c",
+      "compressedSha256": "162791360e0add81b3fbee438aacc71d6f6d356a7fd711ea33126a881811c781"
+    },
+    {
+      "file": "desktop-3d-initial.webp",
+      "originalFile": "output/playwright/desktop-3d-initial.png",
+      "width": 1328,
+      "height": 699,
+      "originalWidth": 1328,
+      "originalHeight": 699,
+      "originalBytes": 385744,
+      "compressedBytes": 35482,
+      "originalSha256": "bbc7dd06fa4c9a9e1c1dc344960ccf064e3899f9fb506bfb669296396e6cc7c5",
+      "compressedSha256": "5f85cad48d5a9804b103ae6950ec641941e6aad40d8b009588a44ee57534ae54"
+    },
+    {
+      "file": "desktop-game-playing.webp",
+      "originalFile": "output/playwright/desktop-game-playing.png",
+      "width": 692,
+      "height": 424,
+      "originalWidth": 692,
+      "originalHeight": 424,
+      "originalBytes": 17377,
+      "compressedBytes": 6428,
+      "originalSha256": "1f24035376de2b6292cb00af11d2541c8731740dbf0d64ab0e97725af5bca3c9",
+      "compressedSha256": "1b51b23fe1898eade218812d43ee318468451df9381fa416af5eae778a6b3f5d"
+    }
+  ]
+}
