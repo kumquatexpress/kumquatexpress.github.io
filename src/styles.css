@@ -1001,3 +1001,7 @@ h2 .eyebrow,
   background: #ebffb8;
   color: #242235;
 }
+
+.world-bottomline {
+  justify-content: flex-end;
+}

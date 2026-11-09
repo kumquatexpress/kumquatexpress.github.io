@@ -1,0 +1,56 @@
+[
+  {
+    "profile": {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "deviceScaleFactor": 1
+    },
+    "browser": "158.0.8127.18",
+    "url": "http://127.0.0.1:4186/",
+    "commit": "df8113e2822bcd5595801b389f54c3cc78e674ec",
+    "headless": true,
+    "actions": [
+      "Scrolled to work; rendered images decoded.",
+      "Scrolled to play; rendered images decoded.",
+      "Scrolled to about; rendered images decoded.",
+      "Scrolled to footer; rendered images decoded.",
+      "Entered real WebGL, rotated both directions, launched citrus, paused.",
+      "Returned to artwork; entry focus restored.",
+      "Caught two citrus using keyboard/tap; waited for the real 15-second round ending."
+    ],
+    "overflow": false,
+    "errors": [],
+    "video": "/private/tmp/boyang-runtime-review/evidence/videos/page@4d8f8fa3c4df6667a1259d0b282e3ee6.webm"
+  },
+  {
+    "profile": {
+      "name": "phone",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "deviceScaleFactor": 1,
+      "isMobile": true,
+      "hasTouch": true
+    },
+    "browser": "158.0.8127.18",
+    "url": "http://127.0.0.1:4186/",
+    "commit": "df8113e2822bcd5595801b389f54c3cc78e674ec",
+    "headless": true,
+    "actions": [
+      "Scrolled to work; rendered images decoded.",
+      "Scrolled to play; rendered images decoded.",
+      "Scrolled to about; rendered images decoded.",
+      "Scrolled to footer; rendered images decoded.",
+      "Entered real WebGL, rotated both directions, launched citrus, paused.",
+      "Returned to artwork; entry focus restored.",
+      "Caught two citrus using keyboard/tap; waited for the real 15-second round ending."
+    ],
+    "overflow": false,
+    "errors": [],
+    "video": "/private/tmp/boyang-runtime-review/evidence/videos/page@aa186cfa303f0e25c93796f5a7be607e.webm"
+  }
+]

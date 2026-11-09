@@ -1,0 +1,9 @@
+{
+  "machine": "e82c381e-305e-455d-8de8-548201627075",
+  "platform": "darwin",
+  "arch": "arm64",
+  "node": "v25.8.2",
+  "kind": "Author-run automated browser audit; not blind or independent peer review",
+  "sourceCommit": "df8113e2822bcd5595801b389f54c3cc78e674ec",
+  "nativeUi": "Browser host unavailable; native Chrome window not found; Finder fallback not approved; isolated Playwright test browser used."
+}
