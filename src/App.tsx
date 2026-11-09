@@ -147,16 +147,9 @@ export default function App() {
                   <br />
                   Getting pleasantly sidetracked.
                 </p>
-                <span className="handwritten">come have a look ↙</span>
               </div>
             </div>
             <World />
-            <div className="hero-footer flex flex-wrap justify-between gap-3">
-              <span>SOFTWARE / WORLDS / HAPPY ACCIDENTS</span>
-              <a href="#work">
-                A few things I’ve helped make <span aria-hidden="true">↓</span>
-              </a>
-            </div>
           </section>
           <section
             id="work"
@@ -165,15 +158,11 @@ export default function App() {
           >
             <div className="section-heading flex flex-wrap justify-between items-end gap-5">
               <div>
-                <p className="eyebrow">01 / OUT IN THE WORLD</p>
                 <h2 id="work-title">
                   Ideas, <em>made real.</em>
                 </h2>
               </div>
-              <p className="section-note">
-                Selected contributions at OpenAI.
-                <br />A few different ways to make things.
-              </p>
+              <p className="section-note">Contributions at OpenAI.</p>
             </div>
             <div className="work-mosaic grid md:grid-cols-2 gap-5 sm:gap-7">
               {projects.map((project, index) => (
@@ -199,14 +188,6 @@ export default function App() {
                       loading="lazy"
                       decoding="async"
                     />
-                    <span className="project-type">{project.category}</span>
-                    <span className="art-index">0{index + 1}</span>
-                    {index === 0 && (
-                      <span className="cinema-label">
-                        <span aria-hidden="true">✦</span> WORLD BUILDING, FRAME
-                        BY FRAME
-                      </span>
-                    )}
                   </div>
                   <div className="project-caption">
                     <div>
@@ -223,10 +204,6 @@ export default function App() {
                 </a>
               ))}
             </div>
-            <p className="art-credit">
-              Original site artwork, inspired by the themes of the work. Explore
-              each project through its official launch story.
-            </p>
           </section>
           <section
             id="play"
@@ -235,16 +212,10 @@ export default function App() {
           >
             <div className="section-heading flex flex-wrap justify-between items-end gap-5">
               <div>
-                <p className="eyebrow">02 / A HEALTHY AMOUNT OF DISTRACTION</p>
                 <h2 id="play-title">
                   Take a <em>side quest.</em>
                 </h2>
               </div>
-              <span className="sidequest-sticker" aria-hidden="true">
-                FOR THE
-                <br />
-                FUN OF IT ✳
-              </span>
             </div>
             <div className="play-grid grid lg:grid-cols-[1.15fr_1fr] gap-6 sm:gap-9">
               <TinyArcade />
@@ -259,7 +230,6 @@ export default function App() {
                       {index === 0 ? "Aa↟" : index === 1 ? "W" : "⌘"}
                     </span>
                     <div>
-                      <p className="eyebrow">{item.tag}</p>
                       <h3>{item.name}</h3>
                       <p>{item.description}</p>
                     </div>
@@ -282,14 +252,8 @@ export default function App() {
                 height="1254"
                 loading="lazy"
               />
-              <span className="about-sticker">
-                THERE’S A HUMAN
-                <br />
-                BEHIND ALL THIS ↗
-              </span>
             </div>
             <div className="about-copy">
-              <p className="eyebrow">03 / THE PERSON AT THE KEYBOARD</p>
               <h2 id="about-title">
                 Hi, I’m <em>Boyang.</em>
               </h2>
@@ -309,7 +273,7 @@ export default function App() {
                 The longer story <Arrow />
               </a>
               <div className="writing-links">
-                <span className="eyebrow">A COUPLE OF OLD MUSINGS / 2020</span>
+                <span className="eyebrow">WRITING / 2020</span>
                 {writings.map((item) => (
                   <a href={item.href} key={item.name}>
                     {item.name} <Arrow />
@@ -323,7 +287,6 @@ export default function App() {
             className="connect-section"
             aria-labelledby="connect-title"
           >
-            <p className="eyebrow">THAT’S MY LITTLE CORNER. WHAT’S YOURS?</p>
             <div className="flex flex-wrap justify-between items-end gap-8">
               <h2 id="connect-title">
                 Let’s make
@@ -347,7 +310,6 @@ export default function App() {
         </main>
         <footer className="site-footer flex flex-wrap justify-between items-center gap-3">
           <span>© {new Date().getFullYear()} Boyang Niu</span>
-          <span>Built with curiosity. And a few oranges.</span>
           <a href="#world">Back to the world ↑</a>
         </footer>
       </div>

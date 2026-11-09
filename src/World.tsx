@@ -90,21 +90,14 @@ export default function World() {
         />
       </picture>
       <div className="world-canvas" ref={host} />
-      <div className="world-topline">
-        <span className="world-tag">✳ A SMALL WORLD BY BOYANG</span>
-        <span className="world-coordinates">37.77° N / 122.42° W</span>
-      </div>
       <div className="world-bottomline">
-        <div className="world-caption">
-          <span className="world-dot" />
-          <span aria-live="polite">
-            {launches
-              ? "A tiny leap for citrus-kind."
-              : state === "playing"
-                ? "Look around. Make yourself at home."
-                : "A place for ideas to get a little weird."}
-          </span>
-        </div>
+        <span className="sr-only" aria-live="polite">
+          {launches
+            ? "A tiny leap for citrus-kind."
+            : state === "playing"
+              ? "Look around. Make yourself at home."
+              : "A place for ideas to get a little weird."}
+        </span>
         {hydrated && (
           <div className="world-controls">
             {state === "poster" && (
