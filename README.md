@@ -1,6 +1,6 @@
 # Boyang Niu
 
-A personal website built with React, TypeScript, Tailwind CSS, and Vite. Warm paper, sculptural color, a custom kinetic flower, and a small collection of real work.
+A personal website built with React, TypeScript, Tailwind CSS, and Vite. “Tools for imagination” connects Boyang’s work in creative products with a small interactive kumquat light study, selected projects, and earlier experiments.
 
 ## Develop
 
@@ -19,7 +19,9 @@ npm run build
 npm run preview
 ```
 
-The build type-checks the source, bundles the application, and prerenders the complete page into `dist/index.html`. React hydrates the static document in production. JavaScript is needed only for the flower controls and motion toggle; the biography, projects, navigation, and links are available without it.
+The build type-checks the source, bundles the application, and prerenders the complete page into `dist/index.html`. React hydrates the static document in production. The biography, projects, images, navigation, and links remain available without JavaScript; the light control and local streaming example become available after hydration.
+
+The adjacent motion control saves the visitor’s preference locally. Without a saved preference, the site follows the operating system’s reduced-motion setting. Ambient animation starts only after hydration, and the streaming sketch runs only on request.
 
 ## Deploy
 
@@ -32,8 +34,14 @@ The Vite base is `/` because this is the account's root Pages repository. To dep
 ## Content and design
 
 - Page content: `src/App.tsx`
-- Interactive sculpture: `src/Sculpture.tsx`
+- Interactive light study: `src/LightStudy.tsx`
+- Local text-stream sketch: `src/StreamDemo.tsx`
 - Typography, responsive layout, and motion: `src/styles.css`
+- Self-hosted fonts and regeneration notes: `src/fonts/README.md`
 - Research and factual sources: `docs/research.md`
 
-All project artwork is original CSS/SVG illustration, not product screenshots. Fonts are self-hosted via Fontsource. No third-party scripts, analytics, tracking, external font requests, or API keys are required. All continuous animations honor the operating system's reduced-motion setting and the page's Pause motion control.
+The Sora image is a self-hosted WebP frame from OpenAI’s official Tokyo-walk sample, with visible attribution and a link to the original video. Sora and Stylized are presented as archived projects. The kumquat study and Stylized still life are original SVG/CSS illustrations, not authentic product output. The streaming sketch is an explicitly labeled local illustration; it uses no external endpoint or AI model.
+
+The three tracked Latin WOFF2 fonts derive from Fontsource. Fixed Fraunces design axes reduce the compared Latin font payload by 40.6% while retaining variable weight and optical size; see the font notes for measurements, licenses, and the optional regeneration workflow. Normal builds need no Python font processing.
+
+No third-party scripts, analytics, tracking, external font requests, or API keys are required. The current swarm-reviewed candidate’s browser visual review is pending; the research notes distinguish completed evidence from unresolved verification.

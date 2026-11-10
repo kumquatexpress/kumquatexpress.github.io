@@ -1,8 +1,17 @@
-import { useState } from "react";
-import { Sculpture } from "./Sculpture";
+import { useEffect, useRef, useState } from "react";
+import { LightStudy } from "./LightStudy";
+import { StreamDemo } from "./StreamDemo";
 
 const credits =
   "https://cdn.openai.com/11998be9-5319-4302-bfbf-1167e093f1fb/Native_Image_Generation_System_Card.pdf#page=12";
+const stylized =
+  "https://www.indiehackers.com/post/show-ih-stylized-professional-product-photos-in-15-seconds-962304946c";
+const github = "https://github.com/kumquatexpress";
+const socialLinks = [
+  { name: "GitHub", href: github },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/boyang-niu" },
+  { name: "X / Twitter", href: "https://x.com/kumquatexpress" },
+];
 
 function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return (
@@ -46,47 +55,10 @@ function Kumquat() {
   );
 }
 
-function SoraArt() {
-  return (
-    <div className="sora-art" aria-hidden="true">
-      <div className="sora-art-top micro">
-        <span>OPENAI / SORA</span>
-        <span>A WORLD IN MOTION</span>
-      </div>
-      <div className="filmstrip">
-        <div className="film-frame frame-one">
-          <div className="film-sun" />
-          <div className="film-arch" />
-          <div className="film-floor" />
-        </div>
-        <div className="film-frame frame-two">
-          <div className="film-sun" />
-          <div className="film-arch" />
-          <div className="film-floor" />
-        </div>
-        <div className="film-frame frame-three">
-          <div className="film-sun" />
-          <div className="film-arch" />
-          <div className="film-floor" />
-        </div>
-      </div>
-      <div className="sora-title">
-        Sora<span>Imagination, in motion.</span>
-      </div>
-      <div className="sora-art-bottom micro">
-        <span>WORDS → WORLDS</span>
-        <span className="film-timer">
-          00:00:08 <span className="record-dot" />
-        </span>
-      </div>
-    </div>
-  );
-}
-
 function StillLife() {
   return (
     <div className="still-life" aria-hidden="true">
-      <span className="micro still-label">A SMALL VIRTUAL STUDIO</span>
+      <span className="still-label">A VIRTUAL PHOTO STUDIO</span>
       <div className="studio-orbit" />
       <div className="studio-plinth" />
       <div className="studio-vase">
@@ -95,56 +67,53 @@ function StillLife() {
       </div>
       <div className="studio-ball" />
       <span className="still-word">Stylized.</span>
-      <span className="micro still-bottom">A NEW LIGHT ON EVERYDAY THINGS</span>
-    </div>
-  );
-}
-
-function StreamArt() {
-  return (
-    <div className="stream-art" aria-hidden="true">
-      <span className="micro">SMALL TOOLS, NEW POSSIBILITIES</span>
-      <div className="stream-window">
-        <div className="window-bar">
-          <i />
-          <i />
-          <i />
-          <span>hello, stream</span>
-        </div>
-        <div className="stream-code">
-          <span className="code-purple">const</span> idea ={" "}
-          <span className="code-green">withStream</span>(<br />
-          <span className="code-indent">
-            YourComponent, {"{"} request {"}"}
-          </span>
-          <br />
-          );
-          <div className="code-divider" />
-          <span className="stream-output">One word at a time.</span>
-          <span className="stream-caret">▎</span>
-        </div>
-      </div>
-      <div className="stream-waves">
-        {Array.from({ length: 37 }, (_, i) => (
-          <i
-            key={i}
-            style={{
-              height: `${12 + Math.sin(i * 0.55) ** 2 * 42}px`,
-              animationDelay: `${i * -0.07}s`,
-            }}
-          />
-        ))}
-      </div>
-      <span className="micro stream-bottom">TEXT / AUDIO / IN REAL TIME</span>
     </div>
   );
 }
 
 export function App() {
   const [paused, setPaused] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
+  const userMotionPreference = useRef<boolean | null>(null);
+
+  useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    try {
+      const saved = window.localStorage.getItem("boyang-motion-paused");
+      userMotionPreference.current = saved === null ? null : saved === "true";
+    } catch (error) {
+      console.warn(
+        "MOTION_STORAGE_UNAVAILABLE: Could not read motion preference",
+        error,
+      );
+    }
+    setPaused(userMotionPreference.current ?? preference.matches);
+    setHydrated(true);
+    function followPreference(event: MediaQueryListEvent) {
+      if (userMotionPreference.current === null) setPaused(event.matches);
+    }
+    preference.addEventListener("change", followPreference);
+    return () => preference.removeEventListener("change", followPreference);
+  }, []);
+
+  function toggleMotion() {
+    const next = !paused;
+    userMotionPreference.current = next;
+    setPaused(next);
+    try {
+      window.localStorage.setItem("boyang-motion-paused", String(next));
+    } catch (error) {
+      console.warn(
+        "MOTION_STORAGE_UNAVAILABLE: Could not save motion preference",
+        error,
+      );
+    }
+  }
 
   return (
-    <div className={`site-shell${paused ? " motion-paused" : ""}`}>
+    <div
+      className={`site-shell${hydrated ? " is-hydrated" : ""}${paused ? " motion-paused" : ""}`}
+    >
       <a className="skip-link" href="#main">
         Skip to content
       </a>
@@ -159,10 +128,7 @@ export function App() {
             Boyang Niu<span className="wordmark-sub">Engineer & builder</span>
           </span>
         </a>
-        <nav
-          className="flex items-center gap-6 sm:gap-9"
-          aria-label="Main navigation"
-        >
+        <nav className="flex items-center" aria-label="Main navigation">
           <a href="#work">Work</a>
           <a href="#about">About</a>
           <a href="#contact" className="nav-contact">
@@ -170,56 +136,52 @@ export function App() {
           </a>
         </nav>
       </header>
-
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <section
           className="hero page-width grid items-center lg:grid-cols-2"
           aria-labelledby="hero-title"
         >
           <div className="hero-copy">
-            <p className="eyebrow flex items-center gap-2">
-              <span className="status-dot" /> BASED IN SAN FRANCISCO
+            <p className="hero-identity">
+              Boyang Niu <span>· San Francisco</span>
             </p>
             <h1 id="hero-title">
-              A little
+              Tools for
               <br />
-              <em>curiosity.</em>
-              <br />A long way.
+              <em>imagination.</em>
             </h1>
             <p className="hero-intro">
-              Hi, I’m <strong>Boyang.</strong> I build things that turn
-              <br className="desktop-break" /> new possibilities into everyday
-              experiences.
-              <br className="desktop-break" /> Currently making things at{" "}
+              I’m an engineer at{" "}
               <a
                 className="text-link"
                 href="https://openai.com/"
                 target="_blank"
                 rel="noreferrer"
               >
-                OpenAI <span aria-hidden="true">↗</span>
+                OpenAI
               </a>
-              .
+              , working on creative products. Previously, I co-founded{" "}
+              <a className="text-link" href="#stylized">
+                Stylized
+              </a>
+              , an AI and 3D photography studio.
             </p>
             <a
               href="#work"
-              className="hero-link inline-flex items-center gap-5"
+              className="hero-link inline-flex items-center gap-4"
             >
-              A few things I’ve worked on{" "}
+              Selected work{" "}
               <span className="circle-arrow">
                 <Arrow />
               </span>
             </a>
           </div>
-          <Sculpture paused={paused} />
-          <div className="hero-foot flex items-center justify-between gap-4">
-            <span className="micro">A PERSONAL CORNER OF THE INTERNET</span>
-            <a href="#work" className="micro flex items-center gap-3">
-              SCROLL TO EXPLORE <span aria-hidden="true">↓</span>
-            </a>
-          </div>
+          <LightStudy
+            paused={paused}
+            enabled={hydrated}
+            onToggleMotion={toggleMotion}
+          />
         </section>
-
         <section
           id="work"
           className="work-section page-width"
@@ -227,48 +189,53 @@ export function App() {
         >
           <div className="section-heading flex flex-wrap items-end justify-between gap-5">
             <div>
-              <p className="eyebrow">01 / SELECTED WORK</p>
-              <h2 id="work-title">Ideas, made real.</h2>
+              <p className="eyebrow">SELECTED WORK</p>
+              <h2 id="work-title">Images, video, and the tools between.</h2>
             </div>
-            <p className="section-aside">
-              A few stops along the way.
-              <br />
-              Always more to explore.
-            </p>
           </div>
-
           <article className="project project-featured">
-            <a
-              href="https://openai.com/index/sora/"
-              target="_blank"
-              rel="noreferrer"
-              className="art-link"
-              aria-label="Explore Sora at OpenAI"
-            >
-              <SoraArt />
-              <span className="project-open">
-                <Arrow diagonal />
-              </span>
-            </a>
+            <figure>
+              <a
+                className="art-link sora-art"
+                href="https://openai.com/index/sora/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="View the Sora project archive at OpenAI"
+              >
+                <img
+                  src="/media/sora-tokyo.webp"
+                  alt="A frame from OpenAI’s Sora sample: a neon-lit street in Tokyo reflected on wet pavement."
+                  width="1440"
+                  height="810"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span className="sora-title">Sora</span>
+                <span className="project-open">
+                  <Arrow diagonal />
+                </span>
+              </a>
+              <figcaption>
+                Sora sample, OpenAI · 2024{" "}
+                <a
+                  href="https://cdn.openai.com/sora/videos/tokyo-walk.mp4"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Watch the original <span aria-hidden="true">↗</span>
+                </a>
+              </figcaption>
+            </figure>
             <div className="project-info grid gap-4 md:grid-cols-[1fr_1fr]">
               <div>
-                <p className="micro project-category">
-                  OPENAI / PRODUCT ENGINEERING
-                </p>
-                <h3>
-                  <a
-                    href="https://openai.com/index/sora/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Sora <Arrow diagonal />
-                  </a>
-                </h3>
+                <p className="project-category">OPENAI · PRODUCT CONTRIBUTOR</p>
+                <h3>Sora & image generation</h3>
               </div>
               <div>
                 <p>
-                  Helping turn generative video into a creative tool. I
-                  contributed to Sora’s product work at OpenAI.
+                  Product contributions across Sora and ChatGPT’s native image
+                  generation. Tools that put new ways of creating images and
+                  video into people’s hands.
                 </p>
                 <a
                   className="project-source"
@@ -276,20 +243,22 @@ export function App() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Product credits <span aria-hidden="true">↗</span>
+                  View product credits <Arrow diagonal />
                 </a>
+                <p className="archive-note">
+                  Sora is archived; the product is no longer available.
+                </p>
               </div>
             </div>
           </article>
-
           <div className="project-pair grid gap-10 md:grid-cols-2">
-            <article className="project">
+            <article id="stylized" className="project">
               <a
                 className="art-link"
-                href="https://www.indiehackers.com/post/show-ih-stylized-professional-product-photos-in-15-seconds-962304946c"
+                href={stylized}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Read Boyang’s introduction to Stylized"
+                aria-label="Read Boyang’s Stylized launch story"
               >
                 <StillLife />
                 <span className="project-open">
@@ -297,67 +266,54 @@ export function App() {
                 </span>
               </a>
               <div className="project-info">
-                <p className="micro project-category">STYLIZED / CO-FOUNDER</p>
-                <h3>
-                  <a
-                    href="https://www.indiehackers.com/post/show-ih-stylized-professional-product-photos-in-15-seconds-962304946c"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    A studio in your pocket <Arrow diagonal />
-                  </a>
-                </h3>
-                <p>
-                  I co-founded Stylized to make product photography more
-                  accessible, combining generative AI, depth, and 3D rendering.
+                <p className="project-category">
+                  STYLIZED · CO-FOUNDER · 2022–2023
                 </p>
-                <span className="project-year micro">2022–2023 · ARCHIVE</span>
-              </div>
-            </article>
-            <article className="project">
-              <a
-                className="art-link"
-                href="https://github.com/kumquatexpress/next-genai-streaming"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Explore next-genai-streaming on GitHub"
-              >
-                <StreamArt />
-                <span className="project-open">
-                  <Arrow diagonal />
-                </span>
-              </a>
-              <div className="project-info">
-                <p className="micro project-category">
-                  OPEN SOURCE / REACT & NEXT.JS
-                </p>
-                <h3>
-                  <a
-                    href="https://github.com/kumquatexpress/next-genai-streaming"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    A little less friction <Arrow diagonal />
-                  </a>
-                </h3>
+                <h3>A virtual photo studio</h3>
                 <p>
-                  A small component library for streaming text and audio into
-                  interfaces. Built to make real-time experiences easier to get
-                  started with.
+                  I co-founded Stylized to help sellers make product photos
+                  without a physical studio. We combined depth extraction,
+                  generative AI, and 3D rendering to give people control over
+                  their scenes.
                 </p>
                 <a
                   className="project-source"
-                  href="https://github.com/kumquatexpress/next-genai-streaming"
+                  href={stylized}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Explore the code <span aria-hidden="true">↗</span>
+                  Read the launch story <Arrow diagonal />
+                </a>
+                <span className="archive-label">
+                  Archived project · Illustration above
+                </span>
+              </div>
+            </article>
+            <article className="project">
+              <StreamDemo paused={paused} enabled={hydrated} />
+              <div className="project-info">
+                <p className="project-category">
+                  OPEN SOURCE · REACT & NEXT.JS
+                </p>
+                <h3>next-genai-streaming</h3>
+                <p>
+                  A small library for streaming text and audio into interfaces.
+                  Use <code>withStream</code> for text or{" "}
+                  <code>withMediaStream</code> for media, and let the component
+                  handle the stream.
+                </p>
+                <a
+                  className="project-source"
+                  href={`${github}/next-genai-streaming`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Explore the code <Arrow diagonal />
                 </a>
               </div>
             </article>
           </div>
         </section>
-
         <section
           id="about"
           className="about-section"
@@ -365,67 +321,57 @@ export function App() {
         >
           <div className="page-width about-grid grid gap-12 lg:grid-cols-[.7fr_1.3fr]">
             <div className="about-heading">
-              <p className="eyebrow">02 / THE PERSON BEHIND THE PIXELS</p>
+              <p className="eyebrow">A LITTLE BACKGROUND</p>
               <h2 id="about-title">
                 Engineer.
                 <br />
                 Builder.
                 <br />
-                <em>Still curious.</em>
+                <em>Toolmaker.</em>
               </h2>
-              <div className="about-doodle" aria-hidden="true">
+              <div className="about-doodle">
                 <Kumquat />
-                <span>also: @kumquatexpress</span>
-                <svg viewBox="0 0 180 35" fill="none">
-                  <path
-                    d="M4 18c43 14 103 17 166-2m-12-5 14 4-8 12"
-                    stroke="currentColor"
-                    strokeWidth="1.2"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                <a href={github} target="_blank" rel="noreferrer">
+                  also: @kumquatexpress
+                </a>
               </div>
             </div>
             <div className="about-copy">
               <p className="about-lead">
-                I’m Boyang Niu, an engineer in San Francisco. My work lives
-                where technology meets the things people can actually use.
+                I’m Boyang Niu, an engineer in San Francisco. I like making new
+                technology useful to the people creating with it.
               </p>
               <p>
                 At OpenAI, I’ve contributed to product work across Sora and
                 ChatGPT’s native image generation. Before that, I co-founded
-                Stylized, a virtual photography studio built around AI and 3D.
+                Stylized, where we used AI and 3D to rethink product
+                photography.
               </p>
               <p>
-                Earlier chapters took me through Dropbox and the University of
-                Pennsylvania. Along the way, I’ve made word games, music
-                visualizers, and tools for fellow builders. The common thread is
-                a reason to try something new.
+                Earlier chapters include Dropbox and computer science at Penn.
+                My smaller projects wander through music, word games, and
+                language experiments.
               </p>
               <div className="journey" aria-label="A few chapters">
                 <div>
-                  <span className="journey-dot" />
                   <strong>OpenAI</strong>
                   <span>Product engineering</span>
-                  <span className="micro">NOW</span>
+                  <span className="journey-time">Now</span>
                 </div>
                 <div>
-                  <span className="journey-dot" />
                   <strong>Stylized</strong>
                   <span>Co-founder</span>
-                  <span className="micro">BEFORE</span>
+                  <span className="journey-time">Previously</span>
                 </div>
                 <div>
-                  <span className="journey-dot" />
                   <strong>Dropbox</strong>
                   <span>Engineering & tech lead</span>
-                  <span className="micro">EARLIER</span>
+                  <span className="journey-time">Earlier</span>
                 </div>
                 <div>
-                  <span className="journey-dot" />
                   <strong>Penn</strong>
                   <span>Computer science</span>
-                  <span className="micro">THE START</span>
+                  <span className="journey-time">The start</span>
                 </div>
               </div>
               <a
@@ -439,19 +385,18 @@ export function App() {
             </div>
           </div>
         </section>
-
         <section
           className="odds-section page-width"
           aria-labelledby="odds-title"
         >
           <div className="section-heading flex flex-wrap items-end justify-between gap-5">
             <div>
-              <p className="eyebrow">03 / THE SIDE QUESTS</p>
-              <h2 id="odds-title">Made out of curiosity.</h2>
+              <p className="eyebrow">SMALLER EXPERIMENTS</p>
+              <h2 id="odds-title">Sound, words, and a bit of play.</h2>
             </div>
             <a
               className="text-link inline-flex items-center gap-2"
-              href="https://github.com/kumquatexpress"
+              href={github}
               target="_blank"
               rel="noreferrer"
             >
@@ -460,7 +405,7 @@ export function App() {
           </div>
           <div className="side-quests">
             <a
-              href="https://github.com/kumquatexpress/visualizer"
+              href={`${github}/visualizer`}
               target="_blank"
               rel="noreferrer"
               className="quest"
@@ -473,14 +418,14 @@ export function App() {
                 <i />
               </span>
               <div>
-                <h3>Seeing sound</h3>
-                <p>A hexagonal playground for rhythm and pitch.</p>
+                <h3>Visualizer</h3>
+                <p>Rhythm and pitch, mapped onto a field of hexagons.</p>
               </div>
-              <span className="quest-type micro">MUSIC × CODE</span>
+              <span className="quest-type">Music × code</span>
               <Arrow diagonal />
             </a>
             <a
-              href="https://github.com/kumquatexpress/WordSmith"
+              href={`${github}/WordSmith`}
               target="_blank"
               rel="noreferrer"
               className="quest"
@@ -489,14 +434,14 @@ export function App() {
                 W
               </span>
               <div>
-                <h3>Playing with words</h3>
+                <h3>WordSmith</h3>
                 <p>A word game built with Unity for web and Android.</p>
               </div>
-              <span className="quest-type micro">A LITTLE PLAY</span>
+              <span className="quest-type">Wordplay</span>
               <Arrow diagonal />
             </a>
             <a
-              href="https://github.com/kumquatexpress/nGramBabbler"
+              href={`${github}/nGramBabbler`}
               target="_blank"
               rel="noreferrer"
               className="quest"
@@ -505,23 +450,28 @@ export function App() {
                 a<span>b</span>
               </span>
               <div>
-                <h3>Teaching a machine to babble</h3>
-                <p>A probabilistic experiment with language.</p>
+                <h3>nGramBabbler</h3>
+                <p>
+                  A probabilistic experiment in teaching a machine to babble.
+                </p>
               </div>
-              <span className="quest-type micro">EARLY EXPERIMENTS</span>
+              <span className="quest-type">Language</span>
               <Arrow diagonal />
             </a>
           </div>
+          <p className="source-note">
+            These are source archives from earlier experiments.
+          </p>
         </section>
       </main>
       <footer id="contact" className="contact-section">
         <div className="page-width">
-          <p className="eyebrow">04 / KEEP IN TOUCH</p>
+          <p className="eyebrow">KEEP IN TOUCH</p>
           <div className="contact-heading flex flex-wrap items-end justify-between gap-8">
             <h2>
-              Good things start
+              Have something
               <br />
-              with a <em>hello.</em>
+              <em>in mind?</em>
             </h2>
             <a
               className="contact-button inline-flex items-center gap-7"
@@ -533,43 +483,29 @@ export function App() {
             </a>
           </div>
           <div className="contact-links flex flex-wrap gap-7">
-            <a
-              href="https://github.com/kumquatexpress"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub <Arrow diagonal />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/boyang-niu"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn <Arrow diagonal />
-            </a>
-            <a
-              href="https://x.com/kumquatexpress"
-              target="_blank"
-              rel="noreferrer"
-            >
-              X / Twitter <Arrow diagonal />
-            </a>
+            {socialLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {link.name}
+                <Arrow diagonal />
+              </a>
+            ))}
           </div>
           <div className="footer-bottom flex flex-wrap items-center justify-between gap-5">
             <a href="#" className="flex items-center gap-3 footer-signature">
-              <Kumquat /> Boyang Niu <span>© {new Date().getFullYear()}</span>
+              <Kumquat />
+              Boyang Niu
             </a>
             <span className="footer-message">
-              Made with care. And a little curiosity.
+              A small corner of the internet, made with care.
             </span>
-            <button
-              onClick={() => setPaused(!paused)}
-              className="motion-toggle"
-              aria-pressed={paused}
-            >
-              <span aria-hidden="true">{paused ? "▷" : "Ⅱ"}</span>{" "}
-              {paused ? "Resume motion" : "Pause motion"}
-            </button>
+            <a href="#main" className="back-to-top">
+              Back to top ↑
+            </a>
           </div>
         </div>
       </footer>
