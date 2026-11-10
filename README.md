@@ -44,4 +44,4 @@ The Sora image is a self-hosted WebP frame from OpenAI’s official Tokyo-walk s
 
 The three tracked Latin WOFF2 fonts derive from Fontsource. Fixed Fraunces design axes reduce the compared Latin font payload by 40.6% while retaining variable weight and optical size; see the font notes for measurements, licenses, and the optional regeneration workflow. Normal builds need no Python font processing.
 
-No third-party scripts, analytics, tracking, external font requests, or API keys are required. The current swarm-reviewed candidate’s browser visual review is pending; the research notes distinguish completed evidence from unresolved verification.
+No third-party scripts, analytics, tracking, external font requests, or API keys are required. Independent swarm review includes real desktop and phone browser checks, keyboard and touch interaction, reduced motion, persisted pause, and JavaScript-free rendering. See the [review record and screenshots](docs/review/swarm-20261110/review.md).
