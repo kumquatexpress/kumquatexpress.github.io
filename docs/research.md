@@ -1,50 +1,36 @@
-# Research and design record
+# Research and design rationale
 
-Researched November 9, 2026. Two hivemind peers independently researched public biography and respected site references, then critiqued attribution, scope, accessibility, motion, and prerender boundaries. Their advice informed the implementation; they did not visually inspect the final page.
+Researched November 9, 2026. The previous implementation was removed without using its layout, content, or artwork as a design reference.
 
-## Explicit user brief
+## Personal website references
 
-React and Tailwind. Minimalist, elegant, animated, handcrafted, creative, fun, informative, engaging. Snappy performance and smooth perceived loading. A git repository that builds as a GitHub Pages static site. Consult the swarm and wait for user judgment before learning broader preferences.
+- [Paco Coursey](https://paco.me/): concise introduction, carefully selected projects, and direct paths into work. Applied the compact information structure and short descriptions.
+- [Rauno Freiberg](https://rauno.me/): a personal identity organized around craft and interaction. Applied the idea of a distinctive, interactive object as a demonstration of care.
+- [Emil Kowalski](https://emilkowal.ski/): focused hierarchy and deliberate attention to motion. Applied restrained interaction timing, native controls, and clear project links.
+- [Brittany Chiang](https://brittanychiang.com/): accessible navigation and direct professional context. Applied a skip link, semantic sections, visible keyboard focus, and straightforward work descriptions.
 
-## Public content sources
+The visual direction is an original small digital studio: warm paper, Fraunces and Manrope, an ultramarine folded-paper flower, a kumquat signature, generous spacing, muted green secondary sections, and bespoke CSS illustrations. It borrows principles from the references, not their layouts or code.
 
-- [Boyang's existing first-person site](https://www.boyangniu.me/): OpenAI, San Francisco, selected contributions (Sora 1/2, imagegen, custom GPTs), founder at SPC, earlier roles at Square, Baton, Dropbox, Hive. This supports contribution-level language; it does not establish sole authorship, ownership, impact metrics, exact team, or project dates.
-- [First-person Stylized launch, Jan 23 2023](https://www.indiehackers.com/post/show-ih-stylized-professional-product-photos-in-15-seconds-962304946c): historical product-photography work using generative AI, depth extraction, and 3D rendering.
-- [Public GitHub profile](https://github.com/kumquatexpress) and repositories [next-genai-streaming](https://github.com/kumquatexpress/next-genai-streaming), [WordSmith](https://github.com/kumquatexpress/WordSmith), [Clairvoyance](https://github.com/kumquatexpress/clairvoyance-app): public experiments. No claim that these are currently maintained products.
-- [Medium profile](https://medium.com/@boyangniu): exact essay titles and May 2020 publication dates. Teasers are short editorial descriptions rather than quotations.
-- [LinkedIn](https://www.linkedin.com/in/boyang-niu): current public professional profile and contact destination. No exact degrees or scraped contact details used.
+The flower has 18 shaded petals, slow ambient rotation, click/keyboard activation to turn it, and three color palettes. It is an ornament that visitors can explore without blocking access to any content. Project illustrations use cinematic arches, a miniature still life, and a streaming code window to explain the three projects visually.
 
-Work links go to official OpenAI launch pages; their descriptions summarize the products and do not claim a specific individually owned implementation. The work-section introduction explicitly describes contributions. Editorial biography and taglines should be reviewed by Boyang for voice and current accuracy.
+## Factual sources
 
-## References studied
+- [GitHub profile](https://github.com/kumquatexpress), also verified through GitHub's public API: name, handle, San Francisco location, projects, and their descriptions.
+- [LinkedIn profile](https://www.linkedin.com/in/boyang-niu): OpenAI and Penn affiliation, public professional identity, and link to the same GitHub handle. Search-indexed public profile was readable; direct LinkedIn retrieval is restricted.
+- [OpenAI native image generation system card](https://cdn.openai.com/11998be9-5319-4302-bfbf-1167e093f1fb/Native_Image_Generation_System_Card.pdf), page 12: Boyang Niu appears under both ChatGPT and Sora product credits. This supports the deliberately limited contributor wording. No individual ownership of the products or model research is claimed.
+- [Boyang's Stylized launch post](https://www.indiehackers.com/post/show-ih-stylized-professional-product-photos-in-15-seconds-962304946c): co-founding and product description, combining depth extraction, generative AI, and 3D rendering.
+- [Boyang's Stylized post on LinkedIn](https://www.linkedin.com/posts/boyang-niu_ai-photography-activity-7044410594728259585-5tfP): 3D and controllable product imagery.
+- [Stylized founder profile](https://www.crunchbase.com/person/boyang-niu-34d7): co-founder, former Dropbox technical lead, and Penn education. Stylized is presented as archived work; its closed product is not advertised as currently available.
+- [next-genai-streaming repository](https://github.com/kumquatexpress/next-genai-streaming): React/Next.js component library with streaming text and audio support. Source read directly using the GitHub API.
+- [Visualizer](https://github.com/kumquatexpress/visualizer), [WordSmith](https://github.com/kumquatexpress/WordSmith), and [nGramBabbler](https://github.com/kumquatexpress/nGramBabbler): descriptions verified from public repository metadata.
 
-- [Paco Coursey](https://paco.me/) and [his redesign essay](https://paco.me/writing/redesign-2021): editorial restraint, concise introduction, useful link groups, typography, performance.
-- [Rauno Freiberg](https://rauno.me/): carefully considered interaction details and strong hierarchy.
-- [Anthony Fu](https://antfu.me/): personal signature and playful details alongside real work.
-- [Brittany Chiang](https://brittanychiang.com/): clear professional context and concrete project descriptions. Avoid reproducing her recognizable portfolio composition.
-- [Josh W. Comeau](https://www.joshwcomeau.com/blog/how-i-built-my-blog/): purposeful custom interactions with keyboard alternatives. The linked essay is explicitly his historical 2021 stack, not current architecture guidance.
-- [Bruno Simon](https://bruno-simon.com/): portfolio as playful experience. The first draft borrowed little of its visual experience; the revision makes room for an interactive miniature world.
+Public GitHub and LinkedIn links are the contact routes. No personal phone number, address, inferred email, unverified hobbies, client metrics, testimonials, or invented writing are included.
 
-No reference site’s code or artwork was copied. Version 1 used original botanical and project SVGs; version 2 replaces them with original generated artwork and an original interactive Three.js scene.
+## Implementation references
 
-## Version 1 direction — rejected by user
+- [Vite GitHub Pages deployment](https://vite.dev/guide/static-deploy.html#github-pages)
+- [Tailwind CSS Vite integration](https://tailwindcss.com/docs/installation/using-vite)
 
-Warm paper, charcoal, olive and ochre; serif typography; a botanical kumquat as hero; editorial hierarchy. The user rejected this draft as too textual, too professional/clean, and lacking color and the aesthetics of 3D, gaming, video, and art. The explicit correction is scoped to this site: prioritize character and visual discovery. Do not interpret minimalist/elegant as an editorial résumé layout here.
+## Verification
 
-## Implementation decisions
-
-Vite + React + Tailwind's Vite plugin. Native anchor links; complete build-time rendered HTML; hydration from the same component tree. Self-hosted Latin fonts, no third-party runtime scripts, an art-first poster with an on-demand Three.js companion, a small arcade game, and reduced-motion support. No artificial wait or full-screen loader. DOM navigation and content remain available without JavaScript or WebGL.
-
-Primary technical references: [Tailwind Vite setup](https://tailwindcss.com/docs/installation/using-vite), [Vite GitHub Pages deployment](https://vite.dev/guide/static-deploy.html#github-pages).
-
-## Version 2 response to explicit feedback
-
-The new visual proposal uses a violet backdrop, cinematic landscape, sculptural artwork, peach/lime accents, a miniature 3D island, and a playable citrus-catching arcade. Copy and biography are shorter. This exact art direction awaits user judgment; the accepted learning is the explicit rejection of the earlier text/professional-clean emphasis.
-
-Swarm collaboration continued with two independent critiques. Primary references shifted toward [Bruno Simon](https://bruno-simon.com/) (discovery and play as the portfolio experience) and [Jesse Zhou](https://www.jesse-zhou.com/) / [his case study](https://jesse-zhou.medium.com/jesses-ramen-case-study-77bae77ab5f0) (coherent environments and meaningful props). The new composition, models, and artwork are original.
-
-The official [Sora 2 launch page](https://openai.com/index/sora-2/) explicitly credits Boyang in Product. The page is an archived launch story, not a promise of present product availability. Artwork tiles lead to official stories and identify site artwork as conceptual illustrations.
-
-Technical critique informed the poster-first approach, explicit scene activation, failure/context-loss restoration, DOM controls, reduced-motion event handling, pixel-ratio cap, limited ambient rendering, offscreen/hidden suspension, cleanup, and expanded browser checks. No device-level FPS claim is made. See [art provenance and production prompts](artwork.md).
-
-Swarm source review caught a focus handoff defect in version 2: the initial tests explicitly focused newly mounted scene/game controls, masking loss of focus when replacing their entry buttons. The correction conditionally transfers focus on entry and game completion, preserves focus when visitors move elsewhere, and tests the ordinary Enter/Tab path.
+TypeScript, production bundling, prerendering, and DOM interaction tests are run before deployment. The browser automation host was unavailable during this build, including the native Chrome fallback, so a browser screenshot and visual layout review could not be completed. This limitation is not a passing visual review.

@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#171525" />
-    <title>Boyang Niu — Engineer & builder</title>
+    <meta name="theme-color" content="#f6f4ed" />
+    <title>Boyang Niu — A little curiosity goes a long way.</title>
     <meta
       name="description"
-      content="Boyang Niu is an engineer and builder in San Francisco. Currently at OpenAI. Selected work, small experiments, and occasional words."
+      content="Boyang Niu is an engineer and builder in San Francisco. Currently at OpenAI. Previously co-founded Stylized. A collection of work, experiments, and small curiosities."
     />
     <link rel="canonical" href="https://kumquatexpress.github.io/" />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Boyang Niu — Engineer & builder" />
     <meta
       property="og:description"
-      content="Software, small experiments, and a little curiosity. Currently building at OpenAI in San Francisco."
+      content="A little curiosity goes a long way. Work, experiments, and small curiosities from an engineer at OpenAI."
     />
     <meta property="og:url" content="https://kumquatexpress.github.io/" />
     <meta
@@ -23,10 +23,24 @@
       content="https://kumquatexpress.github.io/social.png"
     />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content="@kumquatexpress" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Boyang Niu",
+        "url": "https://kumquatexpress.github.io/",
+        "jobTitle": "Engineer",
+        "worksFor": { "@type": "Organization", "name": "OpenAI" },
+        "sameAs": [
+          "https://github.com/kumquatexpress",
+          "https://www.linkedin.com/in/boyang-niu",
+          "https://x.com/kumquatexpress"
+        ]
+      }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -1,8 +1,6 @@
 # Boyang Niu
 
-A small personal website built with React, TypeScript, Tailwind CSS, and Vite.
-
-**Live:** https://kumquatexpress.github.io/
+A personal website built with React, TypeScript, Tailwind CSS, and Vite. Warm paper, sculptural color, a custom kinetic flower, and a small collection of real work.
 
 ## Develop
 
@@ -13,34 +11,29 @@ npm ci
 npm run dev
 ```
 
-## Build and verify
+## Check and build
 
 ```sh
-npm run check
-npx playwright install chromium
 npm test
+npm run build
 npm run preview
 ```
 
-`npm run build` produces `dist/`. A build-time React render writes the full page to `index.html`; the browser hydrates that same React tree. Reading, navigation, and external links work without JavaScript. React adds a small keyboard-accessible arcade game and an optional interactive Three.js island. The Three.js scene is fetched only after choosing **Enter 3D**; its artwork remains visible during loading and on failure.
+The build type-checks the source, bundles the application, and prerenders the complete page into `dist/index.html`. React hydrates the static document in production. JavaScript is needed only for the flower controls and motion toggle; the biography, projects, navigation, and links are available without it.
 
-The Playwright suite checks production HTML/art without JavaScript, phone/tablet/desktop layout and Axe accessibility checks, keyboard-operated arcade scoring, lazy scene loading, camera/action controls, pause, initial and changing reduced-motion preferences, offscreen suspension, failed chunk loading, and WebGL context loss. It also saves visual review screenshots.
+## Deploy
 
-## Deploy to GitHub Pages
+Every push to `main` runs the tests, builds the site, and deploys `dist/` to GitHub Pages through `.github/workflows/deploy.yml`. Pull requests run the same validation without deploying. Pages is configured to use GitHub Actions.
 
-The included workflow builds and tests on pull requests and pushes to `main`, and deploys `main` through the official Pages actions. The repository's Pages source must be **GitHub Actions**. No API keys or application server are needed.
+Live URL: https://kumquatexpress.github.io/
 
-Asset paths are relative, so `dist/` also works under a project subpath. If moving to another URL, update canonical, Open Graph, `robots.txt`, and `sitemap.xml`. No custom domain is configured by this project.
+The Vite base is `/` because this is the account's root Pages repository. To deploy under a repository subpath instead, update `base` in `vite.config.ts` and the canonical, Open Graph, robots, and sitemap URLs.
 
-## Edit
+## Content and design
 
-- `src/content.ts`: selected work, experiments, and essay links.
-- `src/App.tsx`: introduction, biography, sections, social links.
-- `src/World.tsx` and `src/world-scene.ts`: progressive scene loading, 3D island, rendering lifecycle, and controls.
-- `src/styles.css`: typography, palette, layout, motion.
-- `source-art/` and `public/art/`: original and compressed artwork. Run `node scripts/optimize-art.mjs` after changing source assets.
-- `docs/artwork.md`: complete imagegen prompts and asset provenance.
+- Page content: `src/App.tsx`
+- Interactive sculpture: `src/Sculpture.tsx`
+- Typography, responsive layout, and motion: `src/styles.css`
+- Research and factual sources: `docs/research.md`
 
-Fonts are self-hosted Latin subsets via Fontsource (DM Sans and Instrument Serif, SIL Open Font License). Their licenses are included in `public/licenses/`. No analytics or third-party runtime requests. The optional Three.js renderer caps pixel ratio and ambient rendering, stops offscreen/hidden/paused or for reduced motion, and releases its resources. Artwork is original conceptual site art, not product screenshots. The phone hero is about 73 kB; all site artwork is served locally as WebP.
-
-See [the research and design notes](docs/research.md) for factual sources, inspiration, and provisional decisions to review.
+All project artwork is original CSS/SVG illustration, not product screenshots. Fonts are self-hosted via Fontsource. No third-party scripts, analytics, tracking, external font requests, or API keys are required. All continuous animations honor the operating system's reduced-motion setting and the page's Pause motion control.

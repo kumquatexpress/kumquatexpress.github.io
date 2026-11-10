@@ -1,14 +1,14 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { renderToString } from "react-dom/server";
-import App from "../src/App";
+import { App } from "../src/App";
 
-const path = new URL("../dist/index.html", import.meta.url);
-const html = await readFile(path, "utf8");
+const template = await readFile("dist/index.html", "utf8");
+if (!template.includes("<!--app-html-->"))
+  throw new Error("PRERENDER: Missing application HTML marker");
 await writeFile(
-  path,
-  html.replace(
-    '<div id="root"></div>',
-    `<div id="root">${renderToString(<App />)}</div>`,
-  ),
+  "dist/index.html",
+  template.replace("<!--app-html-->", renderToString(<App />)),
 );
-console.log("Prerendered the complete page to static HTML.");
+console.log(
+  "Prerendered the complete page for search engines and JavaScript-free reading.",
+);
