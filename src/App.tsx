@@ -160,7 +160,7 @@ export function App() {
               >
                 OpenAI
               </a>
-              , working on creative products. Previously, I co-founded{" "}
+              . Previously, I co-founded{" "}
               <a className="text-link" href="#stylized">
                 Stylized
               </a>
@@ -233,9 +233,9 @@ export function App() {
               </div>
               <div>
                 <p>
-                  Product contributions across Sora and ChatGPT’s native image
-                  generation. Tools that put new ways of creating images and
-                  video into people’s hands.
+                  Contributed to product work for native image generation in
+                  ChatGPT and Sora. Tools that put new ways of creating images
+                  into people’s hands.
                 </p>
                 <a
                   className="project-source"

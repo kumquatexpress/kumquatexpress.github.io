@@ -119,6 +119,8 @@ a:hover > .arrow {
   font-weight: 550;
 }
 .site-header nav a {
+  min-width: 44px;
+  justify-content: center;
   display: flex;
   align-items: center;
   min-height: 44px;
@@ -257,12 +259,12 @@ h1 em {
 }
 .light-control input::-webkit-slider-runnable-track {
   height: 2px;
-  background: #b9c0aa;
+  background: #7c8a68;
   border-radius: 2px;
 }
 .light-control input::-moz-range-track {
   height: 2px;
-  background: #b9c0aa;
+  background: #7c8a68;
   border-radius: 2px;
 }
 .light-control input::-webkit-slider-thumb {
